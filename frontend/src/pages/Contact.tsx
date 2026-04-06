@@ -12,7 +12,8 @@ import {
   LinkedIn,
   Instagram,
 } from "@mui/icons-material";
-import { submitContactForm } from "../services/contactService";
+import { 
+  sendContactForm, sanitizeContactFormData } from "../services/contactService";
 import { userProfile, TEXTS } from "../utils/config";
 import type { ContactFormData } from "../types";
 import "../styles/pages/Contact.scss";
@@ -47,7 +48,8 @@ const Contact: React.FC = () => {
 
     try {
       //Usar modo mock hasta que el backend esté listo
-      const response = await submitContactForm(formData, true);
+      const sanitizedData = sanitizeContactFormData(formData);
+      const response = await sendContactForm(sanitizedData);
 
       if (response.success) {
         setSubmitStatus({
