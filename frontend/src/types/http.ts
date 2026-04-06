@@ -4,3 +4,12 @@ export interface HttpError {
     status?: number;
     data?: unknown;
 }
+
+export const isHttpError = (error: unknown): error is HttpError => {
+    return (
+        typeof error === "object" &&
+        error !== null &&
+        "type" in error &&
+        "message" in error
+    );
+};

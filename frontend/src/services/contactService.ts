@@ -3,7 +3,7 @@
 // ══════════════════════════════════════════════════════════════
 import type { ContactFormData, ContactResponse } from "../types";
 import { httpClient } from "./httpClient";
-import type { HttpError } from "../types/http";
+import { isHttpError, type HttpError } from "../types/http";
 // ────────────────────────────────────────────────────────────
 // Validaciones
 // ────────────────────────────────────────────────────────────
@@ -71,11 +71,15 @@ export const sendContactForm = async (
 
     return response.data;
   } catch (error) {
-    const httpError = error as HttpError;
-
+    if (isHttpError(error)) {
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
     return {
       success: false,
-      message: httpError.message,
+      message: "Ocurrió un error inesperado...",
     };
   }
 };
