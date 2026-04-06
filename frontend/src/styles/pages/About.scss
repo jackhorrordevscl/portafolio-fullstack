@@ -1,0 +1,391 @@
+// ══════════════════════════════════════════════════════════════
+// GROUND ZERO - About Page Styles
+// ══════════════════════════════════════════════════════════════
+
+@use '../variables' as vars;
+
+.about {
+  min-height: 100vh;
+  padding: 120px 0 80px;
+
+  &__container {
+    max-width: 1200px;
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Header
+  // ────────────────────────────────────────────────────────────
+  &__header {
+    text-align: center;
+    margin-bottom: vars.$spacing-4xl;
+  }
+
+  &__title {
+    font-size: vars.$font-size-5xl;
+    margin-bottom: vars.$spacing-lg;
+
+    @media (max-width: vars.$breakpoint-md) {
+      font-size: vars.$font-size-4xl;
+    }
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Profile Section
+  // ────────────────────────────────────────────────────────────
+  &__profile {
+    margin-bottom: vars.$spacing-4xl;
+  }
+
+  &__profile-content {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: vars.$spacing-3xl;
+    align-items: center;
+    background: vars.$bg-surface;
+    border: 1px solid vars.$border-dark;
+    border-radius: vars.$radius-xl;
+    padding: vars.$spacing-3xl;
+
+    @media (max-width: vars.$breakpoint-md) {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: vars.$spacing-2xl;
+    }
+  }
+
+  &__avatar {
+    position: relative;
+    width: 180px;
+    height: 180px;
+
+    @media (max-width: vars.$breakpoint-md) {
+      margin: 0 auto;
+    }
+  }
+
+  &__avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    background: vars.$gradient-accent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__avatar-icon {
+    font-size: 80px;
+    color: vars.$bg-dark-primary;
+  }
+
+  &__avatar-ring {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 2px solid vars.$primary-lime;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-md;
+  }
+
+  &__name {
+    font-size: vars.$font-size-3xl;
+    margin: 0;
+  }
+
+  &__role {
+    font-size: vars.$font-size-xl;
+    font-weight: vars.$font-weight-semibold;
+  }
+
+  &__meta {
+    display: flex;
+    gap: vars.$spacing-xl;
+    flex-wrap: wrap;
+
+    @media (max-width: vars.$breakpoint-md) {
+      justify-content: center;
+    }
+  }
+
+  &__meta-item {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-xs;
+    color: vars.$text-secondary;
+    font-size: vars.$font-size-sm;
+  }
+
+  &__description {
+    color: vars.$text-secondary;
+    line-height: 1.8;
+    white-space: pre-line;
+  }
+
+  &__social {
+    display: flex;
+    gap: vars.$spacing-md;
+    margin-top: vars.$spacing-md;
+
+    @media (max-width: vars.$breakpoint-md) {
+      justify-content: center;
+    }
+  }
+
+  &__social-link {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-sm;
+    padding: vars.$spacing-sm vars.$spacing-lg;
+    background: transparent;
+    border: 1px solid vars.$border-dark;
+    border-radius: vars.$radius-base;
+    color: vars.$text-secondary;
+    text-decoration: none;
+    font-weight: vars.$font-weight-medium;
+    transition: all vars.$transition-base;
+
+    &:hover {
+      border-color: vars.$primary-cyan;
+      color: vars.$primary-cyan;
+      background: rgba(66, 245, 212, 0.05);
+    }
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Section Titles
+  // ────────────────────────────────────────────────────────────
+  &__section-title {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-md;
+    font-size: vars.$font-size-3xl;
+    margin-bottom: vars.$spacing-2xl;
+
+    @media (max-width: vars.$breakpoint-md) {
+      font-size: vars.$font-size-2xl;
+    }
+  }
+
+  &__section-icon {
+    color: vars.$primary-lime;
+    font-size: 32px;
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Skills
+  // ────────────────────────────────────────────────────────────
+  &__skills {
+    margin-bottom: vars.$spacing-4xl;
+  }
+
+  &__skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: vars.$spacing-2xl;
+  }
+}
+
+// ────────────────────────────────────────────────────────────
+// Skill Group
+// ────────────────────────────────────────────────────────────
+.skill-group {
+  background: vars.$bg-surface;
+  border: 1px solid vars.$border-dark;
+  border-radius: vars.$radius-lg;
+  padding: vars.$spacing-xl;
+
+  &__title {
+    font-size: vars.$font-size-lg;
+    margin-bottom: vars.$spacing-lg;
+    padding-bottom: vars.$spacing-md;
+    border-bottom: 2px solid vars.$border-dark;
+    color: vars.$primary-cyan;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-lg;
+  }
+}
+
+.skill-item {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: vars.$spacing-xs;
+  }
+
+  &__name {
+    font-size: vars.$font-size-base;
+    font-weight: vars.$font-weight-medium;
+    color: vars.$text-primary;
+  }
+
+  &__level {
+    font-size: vars.$font-size-sm;
+    color: vars.$text-muted;
+    font-weight: vars.$font-weight-semibold;
+  }
+
+  &__bar {
+    height: 8px;
+    background: vars.$bg-dark-primary;
+    border-radius: vars.$radius-full;
+    overflow: hidden;
+  }
+
+  &__progress {
+    height: 100%;
+    background: vars.$gradient-accent;
+    border-radius: vars.$radius-full;
+  }
+}
+
+// ────────────────────────────────────────────────────────────
+// Timeline
+// ────────────────────────────────────────────────────────────
+.about__timeline {
+  margin-bottom: vars.$spacing-4xl;
+}
+
+.timeline {
+  position: relative;
+  padding-left: vars.$spacing-3xl;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: vars.$gradient-accent;
+  }
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: vars.$spacing-3xl;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  &__marker {
+    position: absolute;
+    left: - vars.$spacing-3xl;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    background: vars.$primary-lime;
+    border: 3px solid vars.$bg-dark-primary;
+    border-radius: 50%;
+    box-shadow: vars.$shadow-glow-lime;
+  }
+
+  &__content {
+    background: vars.$bg-surface;
+    border: 1px solid vars.$border-dark;
+    border-radius: vars.$radius-lg;
+    padding: vars.$spacing-xl;
+  }
+
+  &__title {
+    font-size: vars.$font-size-xl;
+    margin-bottom: vars.$spacing-xs;
+  }
+
+  &__company {
+    color: vars.$primary-cyan;
+    font-weight: vars.$font-weight-medium;
+    margin-bottom: vars.$spacing-xs;
+  }
+
+  &__period {
+    color: vars.$text-muted;
+    font-size: vars.$font-size-sm;
+    margin-bottom: vars.$spacing-md;
+  }
+
+  &__description {
+    color: vars.$text-secondary;
+    line-height: 1.6;
+  }
+}
+
+// ────────────────────────────────────────────────────────────
+// Education
+// ────────────────────────────────────────────────────────────
+.about__education {
+  margin-bottom: vars.$spacing-4xl;
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: vars.$spacing-2xl;
+}
+
+.education-card {
+  background: vars.$bg-surface;
+  border: 1px solid vars.$border-dark;
+  border-radius: vars.$radius-lg;
+  padding: vars.$spacing-2xl;
+  text-align: center;
+  transition: all vars.$transition-base;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: vars.$primary-cyan;
+    box-shadow: 0 8px 30px rgba(66, 245, 212, 0.15);
+  }
+
+  &__icon {
+    font-size: 48px;
+    color: vars.$primary-lime;
+    margin-bottom: vars.$spacing-md;
+  }
+
+  &__title {
+    font-size: vars.$font-size-xl;
+    margin-bottom: vars.$spacing-sm;
+  }
+
+  &__institution {
+    color: vars.$primary-cyan;
+    font-weight: vars.$font-weight-medium;
+    margin-bottom: vars.$spacing-md;
+  }
+
+  &__description {
+    color: vars.$text-secondary;
+    line-height: 1.6;
+  }
+}
+
+// ────────────────────────────────────────────────────────────
+// Animations
+// ────────────────────────────────────────────────────────────
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.5;
+  }
+}

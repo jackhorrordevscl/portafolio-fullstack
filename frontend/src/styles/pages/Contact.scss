@@ -1,0 +1,333 @@
+// ══════════════════════════════════════════════════════════════
+// GROUND ZERO - Contact Page Styles
+// ══════════════════════════════════════════════════════════════
+
+@use '../variables' as vars;
+.contact {
+  min-height: 100vh;
+  padding: 120px 0 80px;
+
+  &__container {
+    max-width: 1200px;
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Header
+  // ────────────────────────────────────────────────────────────
+  &__header {
+    text-align: center;
+    margin-bottom: vars.$spacing-4xl;
+  }
+
+  &__title {
+    font-size: vars.$font-size-5xl;
+    margin-bottom: vars.$spacing-md;
+
+    @media (max-width: vars.$breakpoint-md) {
+      font-size: vars.$font-size-4xl;
+    }
+  }
+
+  &__subtitle {
+    font-size: vars.$font-size-xl;
+    color: vars.$text-secondary;
+    margin-bottom: vars.$spacing-lg;
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Content Grid
+  // ────────────────────────────────────────────────────────────
+  &__content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: vars.$spacing-4xl;
+
+    @media (max-width: vars.$breakpoint-lg) {
+      grid-template-columns: 1fr;
+      gap: vars.$spacing-3xl;
+    }
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Info Section
+  // ────────────────────────────────────────────────────────────
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-2xl;
+    position: relative;
+  }
+
+  &__info-cards {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-lg;
+  }
+
+  &__social {
+    background: vars.$bg-surface;
+    border: 1px solid vars.$border-dark;
+    border-radius: vars.$radius-lg;
+    padding: vars.$spacing-xl;
+  }
+
+  &__social-title {
+    font-size: vars.$font-size-lg;
+    margin-bottom: vars.$spacing-md;
+    color: vars.$text-primary;
+  }
+
+  &__social-links {
+    display: flex;
+    gap: vars.$spacing-md;
+  }
+
+  &__social-link {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid vars.$border-dark;
+    border-radius: vars.$radius-base;
+    color: vars.$text-secondary;
+    transition: all vars.$transition-base;
+
+    &:hover {
+      background: vars.$gradient-accent;
+      border-color: transparent;
+      color: vars.$bg-dark-primary;
+      transform: translateY(-4px);
+      box-shadow: vars.$shadow-glow-lime;
+    }
+
+    svg {
+      font-size: 24px;
+    }
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Decoration
+  // ────────────────────────────────────────────────────────────
+  &__decoration {
+    position: relative;
+    height: 200px;
+    margin-top: vars.$spacing-2xl;
+    display: none;
+
+    @media (min-width: vars.$breakpoint-lg) {
+      display: block;
+    }
+  }
+
+  &__decoration-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    border: 2px solid rgba(200, 245, 66, 0.2);
+    border-radius: 50%;
+    animation: rotate 20s linear infinite;
+  }
+
+  &__decoration-dots {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(
+      circle,
+      rgba(66, 245, 212, 0.1) 1px,
+      transparent 1px
+    );
+    background-size: 20px 20px;
+  }
+}
+
+// ────────────────────────────────────────────────────────────
+// Contact Info Card
+// ────────────────────────────────────────────────────────────
+.contact-info-card {
+  display: flex;
+  align-items: center;
+  gap: vars.$spacing-lg;
+  background: vars.$bg-surface;
+  border: 1px solid vars.$border-dark;
+  border-radius: vars.$radius-lg;
+  padding: vars.$spacing-xl;
+  transition: all vars.$transition-base;
+
+  &:hover {
+    transform: translateX(8px);
+    border-color: vars.$primary-cyan;
+  }
+
+  &__icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: vars.$gradient-accent;
+    border-radius: vars.$radius-base;
+    color: vars.$bg-dark-primary;
+
+    svg {
+      font-size: 28px;
+    }
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__label {
+    font-size: vars.$font-size-sm;
+    color: vars.$text-muted;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: vars.$spacing-xs;
+  }
+
+  &__value {
+    font-size: vars.$font-size-lg;
+    color: vars.$text-primary;
+    font-weight: vars.$font-weight-medium;
+    margin: 0;
+
+    &--link {
+      color: vars.$primary-cyan;
+      text-decoration: none;
+      transition: color vars.$transition-base;
+
+      &:hover {
+        color: vars.$primary-lime;
+      }
+    }
+  }
+}
+
+// ────────────────────────────────────────────────────────────
+// Contact Form
+// ────────────────────────────────────────────────────────────
+.contact-form {
+  background: vars.$bg-surface;
+  border: 1px solid vars.$border-dark;
+  border-radius: vars.$radius-lg;
+  padding: vars.$spacing-3xl;
+
+  @media (max-width: vars.$breakpoint-sm) {
+    padding: vars.$spacing-2xl;
+  }
+
+  &__group {
+    margin-bottom: vars.$spacing-lg;
+  }
+
+  &__label {
+    display: block;
+    font-size: vars.$font-size-sm;
+    font-weight: vars.$font-weight-medium;
+    color: vars.$text-secondary;
+    margin-bottom: vars.$spacing-sm;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &__input,
+  &__textarea {
+    width: 100%;
+    padding: vars.$spacing-md;
+    background: vars.$bg-dark-primary;
+    border: 1px solid vars.$border-dark;
+    border-radius: vars.$radius-base;
+    color: vars.$text-primary;
+    font-size: vars.$font-size-base;
+    font-family: vars.$font-primary;
+    transition: all vars.$transition-base;
+
+    &:focus {
+      outline: none;
+      border-color: vars.$primary-cyan;
+      box-shadow: 0 0 0 3px rgba(66, 245, 212, 0.1);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &::placeholder {
+      color: vars.$text-subtle;
+    }
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 150px;
+  }
+
+  &__message {
+    padding: vars.$spacing-md;
+    border-radius: vars.$radius-base;
+    margin-bottom: vars.$spacing-lg;
+    font-size: vars.$font-size-sm;
+    font-weight: vars.$font-weight-medium;
+
+    &--success {
+      background: rgba(39, 201, 63, 0.1);
+      border: 1px solid rgba(39, 201, 63, 0.3);
+      color: #27c93f;
+    }
+
+    &--error {
+      background: rgba(255, 95, 86, 0.1);
+      border: 1px solid rgba(255, 95, 86, 0.3);
+      color: #ff5f56;
+    }
+  }
+
+  &__submit {
+    width: 100%;
+    justify-content: center;
+    font-size: vars.$font-size-lg;
+    padding: vars.$spacing-md vars.$spacing-xl;
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+  }
+
+  &__spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid vars.$bg-dark-primary;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+}
+
+// ────────────────────────────────────────────────────────────
+// Animations
+// ────────────────────────────────────────────────────────────
+@keyframes rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

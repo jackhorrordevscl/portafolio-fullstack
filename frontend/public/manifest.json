@@ -1,0 +1,19 @@
+{
+    "name": "Juan José Martínez - Portafolio ",
+    "short_name:": "JJM Portafolio",
+    "description": "Portafolio profesional de Juan José Martínez - Desarrollador Fullstack",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0C0F14",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["portfolio", "developer", "technology"],
+    "lang": "es-CL"
+}

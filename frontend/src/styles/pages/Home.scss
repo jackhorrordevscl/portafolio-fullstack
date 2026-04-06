@@ -1,0 +1,361 @@
+// ══════════════════════════════════════════════════════════════
+// GROUND ZERO - Home Page Styles
+// ══════════════════════════════════════════════════════════════
+
+@use '../variables' as vars;
+
+.home {
+  min-height: 100vh;
+}
+
+// ────────────────────────────────────────────────────────────
+// Hero Section
+// ────────────────────────────────────────────────────────────
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 0 80px;
+  overflow: hidden;
+
+  &__container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: vars.$spacing-4xl;
+    align-items: center;
+
+    @media (max-width: vars.$breakpoint-lg) {
+      grid-template-columns: 1fr;
+      gap: vars.$spacing-3xl;
+      text-align: center;
+    }
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Texto
+  // ────────────────────────────────────────────────────────────
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-lg;
+
+    @media (max-width: vars.$breakpoint-lg) {
+      align-items: center;
+    }
+  }
+
+  &__greeting {
+    font-size: vars.$font-size-lg;
+    color: vars.$text-secondary;
+    font-weight: vars.$font-weight-medium;
+    letter-spacing: 1px;
+  }
+
+  &__name {
+    font-size: vars.$font-size-6xl;
+    font-weight: vars.$font-weight-extrabold;
+    color: vars.$text-primary;
+    line-height: 1.1;
+    margin: 0;
+    letter-spacing: -2px;
+
+    @media (max-width: vars.$breakpoint-md) {
+      font-size: vars.$font-size-4xl;
+    }
+  }
+
+  &__title {
+    font-size: vars.$font-size-3xl;
+    margin: 0;
+
+    @media (max-width: vars.$breakpoint-md) {
+      font-size: vars.$font-size-2xl;
+    }
+  }
+
+  &__subtitle {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-sm;
+    font-size: vars.$font-size-xl;
+    color: vars.$text-secondary;
+    font-weight: vars.$font-weight-medium;
+
+    @media (max-width: vars.$breakpoint-lg) {
+      justify-content: center;
+    }
+  }
+
+  &__icon {
+    color: vars.$primary-cyan;
+  }
+
+  &__description {
+    font-size: vars.$font-size-lg;
+    color: vars.$text-muted;
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0;
+
+    @media (max-width: vars.$breakpoint-lg) {
+      text-align: center;
+      max-width: 100%;
+    }
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Actions
+  // ────────────────────────────────────────────────────────────
+  &__actions {
+    display: flex;
+    gap: vars.$spacing-md;
+    margin-top: vars.$spacing-lg;
+
+    @media (max-width: vars.$breakpoint-lg) {
+      justify-content: center;
+    }
+
+    @media (max-width: vars.$breakpoint-sm) {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Stats
+  // ────────────────────────────────────────────────────────────
+  &__stats {
+    display: flex;
+    gap: vars.$spacing-3xl;
+    margin-top: vars.$spacing-2xl;
+    padding-top: vars.$spacing-2xl;
+    border-top: 1px solid vars.$border-dark;
+
+    @media (max-width: vars.$breakpoint-lg) {
+      justify-content: center;
+    }
+
+    @media (max-width: vars.$breakpoint-sm) {
+      gap: vars.$spacing-xl;
+    }
+  }
+
+  &__stat {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-md;
+  }
+
+  &__stat-icon {
+    font-size: 32px;
+    color: vars.$primary-lime;
+    filter: drop-shadow(0 0 8px rgba(200, 245, 66, 0.3));
+  }
+
+  &__stat-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__stat-value {
+    font-size: vars.$font-size-3xl;
+    font-weight: vars.$font-weight-extrabold;
+    line-height: 1;
+  }
+
+  &__stat-label {
+    font-size: vars.$font-size-sm;
+    color: vars.$text-muted;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Visual
+  // ────────────────────────────────────────────────────────────
+  &__visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+
+    @media (max-width: vars.$breakpoint-lg) {
+      height: 400px;
+    }
+  }
+
+  &__circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid;
+
+    &--1 {
+      width: 400px;
+      height: 400px;
+      border-color: rgba(200, 245, 66, 0.1);
+      animation: rotate 20s linear infinite;
+    }
+
+    &--2 {
+      width: 300px;
+      height: 300px;
+      border-color: rgba(66, 245, 212, 0.1);
+      animation: rotate 15s linear infinite reverse;
+    }
+
+    &--3 {
+      width: 200px;
+      height: 200px;
+      border-color: rgba(200, 245, 66, 0.2);
+      animation: rotate 10s linear infinite;
+    }
+  }
+
+  &__code-block {
+    position: relative;
+    z-index: 1;
+    background: vars.$bg-surface;
+    border: 1px solid vars.$border-dark;
+    border-radius: vars.$radius-lg;
+    padding: vars.$spacing-lg;
+    box-shadow: vars.$shadow-lg;
+    max-width: 400px;
+    width: 100%;
+  }
+
+  &__code-header {
+    display: flex;
+    gap: vars.$spacing-xs;
+    margin-bottom: vars.$spacing-md;
+    padding-bottom: vars.$spacing-sm;
+    border-bottom: 1px solid vars.$border-dark;
+  }
+
+  &__code-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: vars.$text-muted;
+
+    &:nth-child(1) {
+      background: #ff5f56;
+    }
+
+    &:nth-child(2) {
+      background: #ffbd2e;
+    }
+
+    &:nth-child(3) {
+      background: #27c93f;
+    }
+  }
+
+  &__code-content {
+    font-family: vars.$font-mono;
+    font-size: vars.$font-size-sm;
+    line-height: 1.8;
+
+    code {
+      background: transparent;
+      padding: 0;
+      color: vars.$text-secondary;
+    }
+
+    .code-keyword {
+      color: #ff79c6;
+    }
+
+    .code-variable {
+      color: #50fa7b;
+    }
+
+    .code-string {
+      color: vars.$primary-lime;
+    }
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Scroll indicator
+  // ────────────────────────────────────────────────────────────
+  &__scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: vars.$spacing-sm;
+    color: vars.$text-muted;
+    font-size: vars.$font-size-xs;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    @media (max-width: vars.$breakpoint-md) {
+      display: none;
+    }
+  }
+
+  &__scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(
+      to bottom,
+      vars.$primary-lime,
+      transparent
+    );
+    animation: scrollAnimation 2s ease-in-out infinite;
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Background decoration
+  // ────────────────────────────────────────────────────────────
+  &__bg-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(
+      circle at 20% 50%,
+      rgba(200, 245, 66, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(66, 245, 212, 0.05) 0%,
+      transparent 50%
+    );
+    pointer-events: none;
+  }
+}
+
+// ────────────────────────────────────────────────────────────
+// Animaciones
+// ────────────────────────────────────────────────────────────
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scrollAnimation {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(20px);
+    opacity: 1;
+  }
+}

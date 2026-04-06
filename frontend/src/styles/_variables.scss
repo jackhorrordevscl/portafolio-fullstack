@@ -1,0 +1,120 @@
+// ══════════════════════════════════════════════════════════════
+// GROUND ZERO - Variables de Diseño
+// ══════════════════════════════════════════════════════════════
+
+// ────────────────────────────────────────────────────────────
+// Colores Principales
+// ────────────────────────────────────────────────────────────
+$primary-lime: #C8F542;
+$primary-cyan: #42F5D4;
+
+// ────────────────────────────────────────────────────────────
+// Fondos
+// ────────────────────────────────────────────────────────────
+$bg-dark-primary: #0C0F14;
+$bg-dark-secondary: #080B10;
+$bg-surface: #141C28;
+$bg-surface-hover: #1A2535;
+
+// ────────────────────────────────────────────────────────────
+// Textos
+// ────────────────────────────────────────────────────────────
+$text-primary: #E8EDF5;
+$text-secondary: #5A7A9A;
+$text-muted: #445E78;
+$text-subtle: #2A3D55;
+
+// ────────────────────────────────────────────────────────────
+// Bordes y Separadores
+// ────────────────────────────────────────────────────────────
+$border-dark: #1A2535;
+$border-darker: #1E2D3D;
+
+// ────────────────────────────────────────────────────────────
+// Gradientes
+// ────────────────────────────────────────────────────────────
+$gradient-accent: linear-gradient(90deg, #C8F542 0%, #42F5D4 100%);
+$gradient-bg: linear-gradient(180deg, #0C0F14 0%, #080B10 100%);
+
+// ────────────────────────────────────────────────────────────
+// Tipografía
+// ────────────────────────────────────────────────────────────
+$font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-mono: 'Fira Code', 'Courier New', monospace;
+
+// Tamaños de fuente
+$font-size-xs: 0.75rem;    // 12px
+$font-size-sm: 0.875rem;   // 14px
+$font-size-base: 1rem;     // 16px
+$font-size-lg: 1.125rem;   // 18px
+$font-size-xl: 1.25rem;    // 20px
+$font-size-2xl: 1.5rem;    // 24px
+$font-size-3xl: 1.875rem;  // 30px
+$font-size-4xl: 2.25rem;   // 36px
+$font-size-5xl: 3rem;      // 48px
+$font-size-6xl: 3.75rem;   // 60px
+
+// Pesos de fuente
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+// ────────────────────────────────────────────────────────────
+// Espaciado
+// ────────────────────────────────────────────────────────────
+$spacing-xs: 0.25rem;   // 4px
+$spacing-sm: 0.5rem;    // 8px
+$spacing-md: 1rem;      // 16px
+$spacing-lg: 1.5rem;    // 24px
+$spacing-xl: 2rem;      // 32px
+$spacing-2xl: 3rem;     // 48px
+$spacing-3xl: 4rem;     // 64px
+$spacing-4xl: 6rem;     // 96px
+
+// ────────────────────────────────────────────────────────────
+// Breakpoints (Responsive)
+// ────────────────────────────────────────────────────────────
+$breakpoint-xs: 480px;
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+// ────────────────────────────────────────────────────────────
+// Transiciones
+// ────────────────────────────────────────────────────────────
+$transition-fast: 150ms ease-in-out;
+$transition-base: 250ms ease-in-out;
+$transition-slow: 350ms ease-in-out;
+
+// ────────────────────────────────────────────────────────────
+// Sombras
+// ────────────────────────────────────────────────────────────
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+$shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+$shadow-glow-lime: 0 0 20px rgba(200, 245, 66, 0.3);
+$shadow-glow-cyan: 0 0 20px rgba(66, 245, 212, 0.3);
+
+// ────────────────────────────────────────────────────────────
+// Border Radius
+// ────────────────────────────────────────────────────────────
+$radius-sm: 0.25rem;   // 4px
+$radius-base: 0.5rem;  // 8px
+$radius-lg: 0.75rem;   // 12px
+$radius-xl: 1rem;      // 16px
+$radius-full: 9999px;
+
+// ────────────────────────────────────────────────────────────
+// Z-index
+// ────────────────────────────────────────────────────────────
+$z-dropdown: 1000;
+$z-sticky: 1020;
+$z-fixed: 1030;
+$z-modal-backdrop: 1040;
+$z-modal: 1050;
+$z-popover: 1060;
+$z-tooltip: 1070;

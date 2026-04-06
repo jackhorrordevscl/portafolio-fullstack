@@ -1,0 +1,306 @@
+// ══════════════════════════════════════════════════════════════
+// GROUND ZERO - Estilos Globales
+// ══════════════════════════════════════════════════════════════
+
+@use 'variables' as vars;
+
+
+
+// ────────────────────────────────────────────────────────────
+// Reset y Configuración Base
+// ────────────────────────────────────────────────────────────
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: vars.$font-primary;
+  font-weight: vars.$font-weight-normal;
+  color: vars.$text-primary;
+  background: vars.$gradient-bg;
+  background-attachment: fixed;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+// ────────────────────────────────────────────────────────────
+// Tipografía Base
+// ────────────────────────────────────────────────────────────
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: vars.$font-weight-bold;
+  line-height: 1.2;
+  margin-bottom: vars.$spacing-md;
+  color: vars.$text-primary;
+}
+
+h1 {
+  font-size: vars.$font-size-5xl;
+  font-weight: vars.$font-weight-extrabold;
+  letter-spacing: -0.02em;
+
+  @media (max-width: vars.$breakpoint-md) {
+    font-size: vars.$font-size-4xl;
+  }
+}
+
+h2 {
+  font-size: vars.$font-size-4xl;
+  font-weight: vars.$font-weight-bold;
+
+  @media (max-width: vars.$breakpoint-md) {
+    font-size: vars.$font-size-3xl;
+  }
+}
+
+h3 {
+  font-size: vars.$font-size-2xl;
+  font-weight: vars.$font-weight-semibold;
+}
+
+p {
+  margin-bottom: vars.$spacing-md;
+  color: vars.$text-secondary;
+  line-height: 1.7;
+}
+
+a {
+  color: vars.$primary-cyan;
+  text-decoration: none;
+  transition: color vars.$transition-base;
+
+  &:hover {
+    color: vars.$primary-lime;
+  }
+}
+
+code {
+  font-family: vars.$font-mono;
+  background: vars.$bg-surface;
+  padding: 0.2em 0.4em;
+  border-radius: vars.$radius-sm;
+  font-size: 0.9em;
+  color: vars.$primary-lime;
+}
+
+// ────────────────────────────────────────────────────────────
+// Scrollbar personalizado
+// ────────────────────────────────────────────────────────────
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: vars.$bg-dark-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  background: vars.$bg-surface;
+  border-radius: vars.$radius-base;
+
+  &:hover {
+    background: vars.$bg-surface-hover;
+  }
+}
+
+// ────────────────────────────────────────────────────────────
+// Selección de texto
+// ────────────────────────────────────────────────────────────
+
+::selection {
+    background: rgba(200, 245, 66, 0.2);
+    color: vars.$primary-lime;
+}
+
+::-moz-selection {
+    background: rgba(200, 245, 66, 0.2);
+    color: vars.$primary-lime;
+}
+
+// ────────────────────────────────────────────────────────────
+// Clases de utilidad
+// ────────────────────────────────────────────────────────────
+
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 vars.$spacing-lg;
+
+    @media (max-width: vars.$breakpoint-md) {
+        padding: 0 vars.$spacing-md;
+    }
+}
+
+.gradient-text {
+    background: vars.$gradient-accent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.accent-bar {
+    height: 3px;
+    background: vars.$gradient-accent;
+    border-radius: vars.$radius-sm;
+    margin: vars.$spacing-md 0;
+}
+
+.glow-lime {
+    box-shadow: vars.$shadow-glow-lime;
+}
+
+.glow-cyan {
+    box-shadow: vars.$shadow-glow-cyan;
+}
+
+// ────────────────────────────────────────────────────────────
+// Animaciones
+// ────────────────────────────────────────────────────────────
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    } 
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.6s ease-out;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.6s ease-out
+}
+
+// ────────────────────────────────────────────────────────────
+// Grid de puntos decorativo (Ground Zero style)
+// ────────────────────────────────────────────────────────────
+
+.dot-grid {
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(circle, vars.$primary-lime 1px, transparent 1px);
+        background-size: 24px 24px;
+        opacity: 0.08;
+        pointer-events: none;
+    }
+}
+
+// ────────────────────────────────────────────────────────────
+// Botones base
+// ────────────────────────────────────────────────────────────
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: vars.$spacing-sm;
+    padding: vars.$spacing-sm vars.$spacing-lg;
+    border: none;
+    border-radius: vars.$radius-base;
+    font-family: vars.$font-primary;
+    font-size: vars.$font-size-base;
+    font-weight: vars.$font-weight-medium;
+    cursor: pointer;
+    transition: all vars.$transition-base;
+    text-decoration: none;
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+.btn-primary {
+    background: vars.$gradient-accent;
+    color: vars.$bg-dark-primary;
+    font-weight: vars.$font-weight-semibold;
+
+    &:hover:not(:disabled){
+        transform: translateY(-2px);
+        box-shadow: vars.$shadow-glow-lime;
+    }
+}
+
+.btn-outline {
+    background: transparent;
+    color: vars.$primary-cyan;
+    border: 2px solid vars.$primary-cyan;
+
+    &:hover:not(:disabled) {
+        background: rgba(66, 245, 212, 0.1);
+        border-color: vars.$primary-lime;
+        color: vars.$primary-lime;
+    }
+}
+
+.btn-ghost {
+    background: transparent;
+    color: vars.$text-secondary;
+
+    &:hover:not(:disabled) {
+        color: vars.$primary-lime;
+        background: rgba(200, 245, 66, 0.05);
+    }
+}

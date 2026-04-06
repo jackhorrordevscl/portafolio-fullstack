@@ -1,0 +1,246 @@
+// ══════════════════════════════════════════════════════════════
+// GROUND ZERO - Header Styles
+// ══════════════════════════════════════════════════════════════
+
+@use '../styles/variables' as vars;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: vars.$z-fixed;
+  padding: vars.$spacing-lg 0;
+  background: transparent;
+  transition: all vars.$transition-base;
+
+  &--scrolled {
+    background: rgba(12, 15, 20, 0.95);
+    backdrop-filter: blur(10px);
+    padding: vars.$spacing-md 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid vars.$border-dark;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Logo
+  // ────────────────────────────────────────────────────────────
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-sm;
+    text-decoration: none;
+    transition: transform vars.$transition-base;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+
+  &__logo-symbol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 0 8px rgba(200, 245, 66, 0.3));
+
+    svg {
+      display: block;
+    }
+  }
+
+  &__logo-text {
+    font-size: vars.$font-size-xl;
+    font-weight: vars.$font-weight-bold;
+    color: vars.$text-primary;
+    letter-spacing: -0.5px;
+
+    @media (max-width: vars.$breakpoint-sm) {
+      font-size: vars.$font-size-lg;
+    }
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Navegación Desktop
+  // ────────────────────────────────────────────────────────────
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-xl;
+
+    @media (max-width: vars.$breakpoint-md) {
+      display: none;
+    }
+  }
+
+  &__nav-link {
+    position: relative;
+    font-size: vars.$font-size-base;
+    font-weight: vars.$font-weight-medium;
+    color: vars.$text-secondary;
+    text-decoration: none;
+    padding: vars.$spacing-sm 0;
+    transition: color vars.$transition-base;
+    letter-spacing: 0.5px;
+
+    &:hover {
+      color: vars.$primary-lime;
+    }
+
+    &--active {
+      color: vars.$text-primary;
+      font-weight: vars.$font-weight-semibold;
+    }
+  }
+
+  &__nav-indicator {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: vars.$gradient-accent;
+    border-radius: vars.$radius-full;
+    animation: slideIn 0.3s ease-out;
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Botón menú móvil
+  // ────────────────────────────────────────────────────────────
+  &__mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: vars.$spacing-sm;
+    z-index: vars.$z-fixed + 1;
+
+    @media (max-width: vars.$breakpoint-md) {
+      display: flex;
+    }
+
+    span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: vars.$text-primary;
+      border-radius: vars.$radius-full;
+      transition: all vars.$transition-base;
+    }
+
+    &--active {
+      span:nth-child(1) {
+        transform: rotate(45deg) translateY(7px);
+        background: vars.$primary-lime;
+      }
+
+      span:nth-child(2) {
+        opacity: 0;
+      }
+
+      span:nth-child(3) {
+        transform: rotate(-45deg) translateY(-7px);
+        background: vars.$primary-lime;
+      }
+    }
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Menú móvil
+  // ────────────────────────────────────────────────────────────
+  &__mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: vars.$bg-dark-primary;
+    border-left: 1px solid vars.$border-dark;
+    padding: 100px vars.$spacing-xl vars.$spacing-xl;
+    transition: right vars.$transition-slow;
+    z-index: vars.$z-fixed;
+
+    @media (max-width: vars.$breakpoint-sm) {
+      width: 100%;
+    }
+
+    &--open {
+      right: 0;
+    }
+  }
+
+  &__mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-md;
+  }
+
+  &__mobile-link {
+    font-size: vars.$font-size-lg;
+    font-weight: vars.$font-weight-medium;
+    color: vars.$text-secondary;
+    text-decoration: none;
+    padding: vars.$spacing-md;
+    border-radius: vars.$radius-base;
+    transition: all vars.$transition-base;
+    opacity: 0;
+    transform: translateX(20px);
+
+    .header__mobile-menu--open & {
+      animation: slideInRight 0.4s ease-out forwards;
+    }
+
+    &:hover {
+      color: vars.$primary-lime;
+      background: rgba(200, 245, 66, 0.05);
+      transform: translateX(0);
+    }
+
+    &--active {
+      color: vars.$text-primary;
+      background: rgba(200, 245, 66, 0.1);
+      border-left: 3px solid vars.$primary-lime;
+    }
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // Overlay
+  // ────────────────────────────────────────────────────────────
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: vars.$z-fixed - 1;
+    animation: fadeIn 0.3s ease-out;
+  }
+}
+
+// ────────────────────────────────────────────────────────────
+// Animaciones
+// ────────────────────────────────────────────────────────────
+@keyframes slideIn {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes slideInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
