@@ -42,8 +42,7 @@ httpClient.interceptors.response.use(
         normalizedError = {
           type: "API",
           message:
-            error.response.data?.message ||
-            "Error en la respuesta del servidor",
+            error.response.data.message,
           status: error.response.status,
           data: error.response.data,
         };
