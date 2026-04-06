@@ -1,21 +1,9 @@
 // ══════════════════════════════════════════════════════════════
 // GROUND ZERO - Servicio de Contacto
 // ══════════════════════════════════════════════════════════════
-
-import axios from "axios";
 import type { ContactFormData, ContactResponse } from "../types";
-import { getApiBaseUrl } from "../utils/config";
-
-// ────────────────────────────────────────────────────────────
-// Configuración de Axios
-// ────────────────────────────────────────────────────────────
-const contactApi = axios.create({
-  baseURL: getApiBaseUrl(),
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
-
+import { httpClient } from "./httpClient";
+import type { HttpError } from "../types/http";
 // ────────────────────────────────────────────────────────────
 // Validaciones
 // ────────────────────────────────────────────────────────────
@@ -64,7 +52,7 @@ export const sendContactForm = async (
   data: ContactFormData,
 ): Promise<ContactResponse> => {
   try {
-    // Validar datos antes de enviar
+    //VALIDACION DE DATOS ANTES DEL ENVÍO
     const validationErrors = validateContactForm(data);
     if (validationErrors.length > 0) {
       return {
@@ -73,39 +61,21 @@ export const sendContactForm = async (
       };
     }
 
-    // Enviar al backend
-    const response = await contactApi.post<ContactResponse>("/contact", {
+    //AQUI SE ENVIA AL BACKEND
+    const response = await httpClient.post<ContactResponse>("/contact", {
       name: data.name.trim(),
-      email: data.email.trim().toLowerCase(),
+      email: data.email.trim().toLocaleLowerCase(),
       subject: data.subject.trim(),
       message: data.message.trim(),
     });
 
     return response.data;
   } catch (error) {
-    console.error("Error sending contact form:", error);
-
-    if (axios.isAxiosError(error)) {
-      // Error de la API
-      if (error.response) {
-        return {
-          success: false,
-          message: error.response.data?.message || "Error al enviar el mensaje",
-        };
-      }
-
-      // Error de red
-      if (error.request) {
-        return {
-          success: false,
-          message: "No se pudo conectar con el servidor. Intenta nuevamente.",
-        };
-      }
-    }
+    const httpError = error as HttpError;
 
     return {
       success: false,
-      message: "Ocurrió un error inesperado. Por favor, intenta nuevamente.",
+      message: httpError.message,
     };
   }
 };
