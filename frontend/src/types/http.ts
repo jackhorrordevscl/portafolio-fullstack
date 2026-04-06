@@ -1,6 +1,8 @@
+import type { MessageKey } from "./messages";
+
 export interface HttpError {
     type: "API" | "NETWORK" | "UNKNOWN";
-    message: string;
+    messages: MessageKey[];
     status?: number;
     data?: unknown;
 }

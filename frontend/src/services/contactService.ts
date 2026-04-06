@@ -3,7 +3,8 @@
 // ══════════════════════════════════════════════════════════════
 import type { ContactFormData, ContactResponse } from "../types";
 import { httpClient } from "./httpClient";
-import { isHttpError, type HttpError } from "../types/http";
+import { isHttpError } from "../types/http";
+import type { MessageKey } from "../types/messages";
 // ────────────────────────────────────────────────────────────
 // Validaciones
 // ────────────────────────────────────────────────────────────
@@ -19,27 +20,26 @@ export const validateEmail = (email: string): boolean => {
 /**
  * Valida los datos del formulario de contacto
  */
-export const validateContactForm = (data: ContactFormData): string[] => {
-  const errors: string[] = [];
+export const validateContactForm = (
+  data: ContactFormData,
+): MessageKey[] => {
+  const errors: MessageKey[] = [];
 
   if (!data.name || data.name.trim().length < 2) {
-    errors.push("El nombre debe tener al menos 2 caracteres");
+    errors.push("VALIDATION_NAME_TOO_SHORT");
   }
-
   if (!data.email || !validateEmail(data.email)) {
-    errors.push("El email no es válido");
+    errors.push("VALIDATION_EMAIL_INVALID");
   }
-
   if (!data.subject || data.subject.trim().length < 3) {
-    errors.push("El asunto debe tener al menos 3 caracteres");
+    errors.push("VALIDATION_SUBJECT_TOO_SHORT");
   }
-
   if (!data.message || data.message.trim().length < 10) {
-    errors.push("El mensaje debe tener al menos 10 caracteres");
+    errors.push("VALIDATION_MESSAGE_TOO_SHORT");
   }
-
+  
   return errors;
-};
+}
 
 // ────────────────────────────────────────────────────────────
 // Funciones del Servicio
@@ -54,10 +54,11 @@ export const sendContactForm = async (
   try {
     //VALIDACION DE DATOS ANTES DEL ENVÍO
     const validationErrors = validateContactForm(data);
+
     if (validationErrors.length > 0) {
       return {
         success: false,
-        message: validationErrors.join(". "),
+        message: validationErrors,
       };
     }
 
@@ -74,12 +75,12 @@ export const sendContactForm = async (
     if (isHttpError(error)) {
       return {
         success: false,
-        message: error.message,
+        message: ["UNKNOWN_ERROR"],
       };
     }
     return {
       success: false,
-      message: "Ocurrió un error inesperado...",
+      message: ["UNKNOWN_ERROR"],
     };
   }
 };

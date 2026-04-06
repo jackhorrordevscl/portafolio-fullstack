@@ -1,9 +1,10 @@
 // ══════════════════════════════════════════════════════════════
 // GROUND ZERO - HTTP Client (Axios Centralizado)
 // ══════════════════════════════════════════════════════════════
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { getApiBaseUrl } from "../utils/config";
 import type { HttpError } from "../types/http";
+import { mapErrorMessages } from "../utils/errorMapper";
 
 // ────────────────────────────────────────────────────────────
 // Instancia base
@@ -22,7 +23,7 @@ export const httpClient = axios.create({
 // ────────────────────────────────────────────────────────────
 httpClient.interceptors.request.use(
   (config) => {
-    //AGREGAR TOKENS JWT, TRACING HEADERS, LOGS
+    // AGREGAR TOKENS JWT, TRACING HEADERS, LOGS
     return config;
   },
   (error) => Promise.reject(error),
@@ -33,44 +34,37 @@ httpClient.interceptors.request.use(
 // ────────────────────────────────────────────────────────────
 httpClient.interceptors.response.use(
   (response) => response,
-  (error) => {
-    let normalizedError: HttpError;
-
-    if (axios.isAxiosError(error)) {
-      // 📌 Error con respuesta del backend
-      if (error.response) {
-        normalizedError = {
-          type: "API",
-          message:
-            error.response.data.message,
-          status: error.response.status,
-          data: error.response.data,
-        };
-      }
-      // 📌 Error de red
-      else if (error.request) {
-        normalizedError = {
-          type: "NETWORK",
-          message: "No se pudo conectar con el servidor",
-        };
-      }
-      // 📌 Error Axios inesperado
-      else {
-        normalizedError = {
-          type: "UNKNOWN",
-          message: error.message || "Error desconocido",
-        };
-      }
-    } else {
-      // 📌 Error completamente inesperado
-      normalizedError = {
-        type: "UNKNOWN",
-        message: "Ocurrió un error inesperado",
+  (error: AxiosError) => {
+    // =========================
+    // NETWORK ERROR
+    // =========================
+    if (!error?.response) {
+      const normalizedError: HttpError = {
+        type: "NETWORK",
+        messages: ["NETWORK_ERROR"],
+        status: undefined,
+        data: error,
       };
+
+      console.error("HTTP Error:", normalizedError);
+      return Promise.reject(normalizedError);
     }
 
-    console.error("HTTP Error:", normalizedError);
+    // =========================
+    // API ERROR (BACKEND RESPONSE)
+    // =========================
+    const normalizedError: HttpError = {
+      type: "API",
+      messages: mapErrorMessages(
+        (error.response.data as { 
+          message?: string | string[] 
+        })?.message
+      ),
+      status: error.response.status,
+      data: error.response.data,
+    };
 
+    console.error("HTTP Error:", normalizedError);
     return Promise.reject(normalizedError);
   },
 );

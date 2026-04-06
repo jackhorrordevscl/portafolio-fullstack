@@ -3,6 +3,7 @@
 // ══════════════════════════════════════════════════════════════
 
 import type React from "react";
+import type { MessageKey } from "./messages";
 
 // ────────────────────────────────────────────────────────────
 // GitHub Types
@@ -66,7 +67,7 @@ export interface ContactFormErrors {
 
 export interface ContactResponse {
     success: boolean;
-    message: string;
+    messages: MessageKey[];
 }
 
 // ────────────────────────────────────────────────────────────

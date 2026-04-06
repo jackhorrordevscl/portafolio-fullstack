@@ -15,8 +15,12 @@ import {
 import { 
   sendContactForm, sanitizeContactFormData } from "../services/contactService";
 import { userProfile, TEXTS } from "../utils/config";
+import { t } from '../i18n/messages';
 import type { ContactFormData } from "../types";
+import type { MessageKey } from "../types/messages";
+
 import "../styles/pages/Contact.scss";
+
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState<ContactFormData>({
@@ -28,34 +32,44 @@ const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: "success" | "error" | null;
-    message: string;
-  }>({ type: null, message: "" });
+    messages: MessageKey[];
+  }>({
+    type: null,
+    messages: [],
+  });
+
+  // ────────────────────────────────────────────────────────────
+  // Handlers
+  // ────────────────────────────────────────────────────────────
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+
     //Limpiar mensajes de estado al escribir
     if (submitStatus.type) {
-      setSubmitStatus({ type: null, message: "" });
+      setSubmitStatus({ type: null, messages: [] });
     }
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     setIsSubmitting(true);
-    setSubmitStatus({ type: null, message: "" });
+    setSubmitStatus({ type: null, messages: [] });
 
     try {
-      //Usar modo mock hasta que el backend esté listo
       const sanitizedData = sanitizeContactFormData(formData);
+
       const response = await sendContactForm(sanitizedData);
 
       if (response.success) {
         setSubmitStatus({
           type: "success",
-          message: response.message,
+          messages: response.messages,
         });
+
         //Limpiar Formulario
         setFormData({
           name: "",
@@ -66,18 +80,22 @@ const Contact: React.FC = () => {
       } else {
         setSubmitStatus({
           type: "error",
-          message: response.message,
+          messages: response.messages,
         });
       }
     } catch (error) {
       setSubmitStatus({
         type: "error",
-        message: TEXTS.contact.error,
+        messages: ["UNKNOWN_ERROR"],
       });
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  // ────────────────────────────────────────────────────────────
+  // UI Data
+  // ────────────────────────────────────────────────────────────
 
   const contactInfo = [
     {
@@ -111,10 +129,16 @@ const Contact: React.FC = () => {
     },
   ].filter((link) => link.url);
 
+  // ────────────────────────────────────────────────────────────
+  // Render
+  // ────────────────────────────────────────────────────────────
+
   return (
     <div className="contact">
       <div className="contact__container container">
-        {/* Header */}
+
+        {/* HEADER */}
+
         <motion.div
           className="contact__header"
           initial={{ opacity: 0, y: 20 }}
@@ -130,7 +154,9 @@ const Contact: React.FC = () => {
         </motion.div>
 
         <div className="contact__content">
+
           {/* Formulario */}
+
           <motion.div
             className="contact__form-wrapper"
             initial={{ opacity: 0, x: -30 }}
@@ -211,7 +237,9 @@ const Contact: React.FC = () => {
                 <div
                   className={`contact-form__message contact-form__message--${submitStatus.type}`}
                 >
-                  {submitStatus.message}
+                  {submitStatus.messages.map((msg, index) => (
+                    <div key={index}>{t(msg)}</div>
+                  ))}
                 </div>
               )}
 
