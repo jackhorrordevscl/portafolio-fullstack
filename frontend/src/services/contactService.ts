@@ -58,7 +58,7 @@ export const sendContactForm = async (
     if (validationErrors.length > 0) {
       return {
         success: false,
-        message: validationErrors,
+        messages: validationErrors,
       };
     }
 
@@ -75,12 +75,12 @@ export const sendContactForm = async (
     if (isHttpError(error)) {
       return {
         success: false,
-        message: ["UNKNOWN_ERROR"],
+        messages: error.messages,
       };
     }
     return {
       success: false,
-      message: ["UNKNOWN_ERROR"],
+      messages: ["UNKNOWN_ERROR"],
     };
   }
 };

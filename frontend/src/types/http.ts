@@ -8,10 +8,12 @@ export interface HttpError {
 }
 
 export const isHttpError = (error: unknown): error is HttpError => {
+    if (typeof error !== "object" || error === null) 
+        return false;
+    const e = error as Partial<HttpError>;
+
     return (
-        typeof error === "object" &&
-        error !== null &&
-        "type" in error &&
-        "message" in error
-    );
+        typeof e.type === "string" &&
+        Array.isArray(e.messages)
+    );    
 };
