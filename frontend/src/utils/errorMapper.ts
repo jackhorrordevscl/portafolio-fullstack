@@ -8,7 +8,22 @@ const normalizeText = (text: string): string => {
     .replace(/[\u0300-\u036f]/g, "");
 };
 
-const mapSingleMessage = (message: string): MessageKey => {
+const VALID_MESSAGES: MessageKey[] = [
+  "VALIDATION_NAME_TOO_SHORT",
+  "VALIDATION_EMAIL_INVALID",
+  "VALIDATION_SUBJECT_TOO_SHORT",
+  "VALIDATION_MESSAGE_TOO_SHORT",
+  "UNKNOWN_ERROR",
+  "NETWORK_ERROR",
+  "CONTACT_SUCCESS",
+  "CONTACT_ERROR",
+];
+
+const mapSingleMessage = (message: unknown): MessageKey => {
+  if (typeof message !== "string") {
+    return "UNKNOWN_ERROR";
+  }
+
   const normalized = normalizeText(message);
 
   //VALIDACIÓN DE EMAIL
@@ -32,7 +47,8 @@ const mapSingleMessage = (message: string): MessageKey => {
     normalized.includes("network") ||
     normalized.includes("conexion") ||
     normalized.includes("servidor") ||
-    normalized.includes("fetch")
+    normalized.includes("fetch") ||
+    normalized.includes("timeout")
   ) {
     return "NETWORK_ERROR";
   }
@@ -40,11 +56,22 @@ const mapSingleMessage = (message: string): MessageKey => {
 };
 
 export const mapErrorMessages = (
-  input: string | string[] | undefined,
+  input: unknown,
 ): MessageKey[] => {
   if (!input) return ["UNKNOWN_ERROR"];
 
-  const messages = Array.isArray(input) ? input : [input];
+  const messages: unknown[] = Array.isArray(input)
+  ? input
+  : [input];
 
-  return messages.map(mapSingleMessage);
+  const mapped = messages.map(mapSingleMessage);
+
+  const valid = mapped.filter(
+    (msg): msg is MessageKey =>
+      VALID_MESSAGES.includes(msg),
+  );
+
+  const unique = Array.from(new Set(valid));
+
+  return unique.length > 0 ? unique : ["UNKNOWN_ERROR"];
 };
