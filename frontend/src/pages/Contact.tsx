@@ -20,6 +20,7 @@ import type { ContactFormData } from "../types";
 import type { MessageKey } from "../types/messages";
 
 import "../styles/pages/Contact.scss";
+import { isHttpError } from "../types/http";
 
 
 const Contact: React.FC = () => {
@@ -62,12 +63,12 @@ const Contact: React.FC = () => {
     try {
       const sanitizedData = sanitizeContactFormData(formData);
 
-      const response = await sendContactForm(sanitizedData);
+      await sendContactForm(sanitizedData);
 
-      if (response.success) {
+      
         setSubmitStatus({
           type: "success",
-          messages: response.messages,
+          messages: ["CONTACT_SUCCESS"],
         });
 
         //Limpiar Formulario
@@ -77,17 +78,31 @@ const Contact: React.FC = () => {
           subject: "",
           message: "",
         });
+    } catch (error) {
+      if (isHttpError(error)) {
+        setSubmitStatus({
+          type: "error",
+          messages: error.messages,
+        });
+      } else if (
+        typeof error === "object" &&
+        error !== null &&
+        "messages" in error
+      ) {
+        const validationError = error as {
+          messages: MessageKey[];
+        };
+
+        setSubmitStatus({
+          type: "error",
+          messages: validationError.messages,
+        });
       } else {
         setSubmitStatus({
           type: "error",
-          messages: response.messages,
+          messages: ["UNKNOWN_ERROR"],
         });
       }
-    } catch (error) {
-      setSubmitStatus({
-        type: "error",
-        messages: ["UNKNOWN_ERROR"],
-      });
     } finally {
       setIsSubmitting(false);
     }

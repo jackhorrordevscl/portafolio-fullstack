@@ -1,9 +1,9 @@
 // ══════════════════════════════════════════════════════════════
 // GROUND ZERO - Servicio de Contacto
 // ══════════════════════════════════════════════════════════════
-import type { ContactFormData, ContactResponse } from "../types";
+import type { ContactFormData } from "../types";
 import { httpClient } from "./httpClient";
-import { isHttpError } from "../types/http";
+
 import type { MessageKey } from "../types/messages";
 // ────────────────────────────────────────────────────────────
 // Validaciones
@@ -50,39 +50,21 @@ export const validateContactForm = (
  */
 export const sendContactForm = async (
   data: ContactFormData,
-): Promise<ContactResponse> => {
-  try {
-    //VALIDACION DE DATOS ANTES DEL ENVÍO
-    const validationErrors = validateContactForm(data);
+): Promise<void> => {
+  const validationErrors = validateContactForm(data);
 
-    if (validationErrors.length > 0) {
-      return {
-        success: false,
-        messages: validationErrors,
-      };
-    }
-
-    //AQUI SE ENVIA AL BACKEND
-    const response = await httpClient.post<ContactResponse>("/contact", {
-      name: data.name.trim(),
-      email: data.email.trim().toLocaleLowerCase(),
-      subject: data.subject.trim(),
-      message: data.message.trim(),
-    });
-
-    return response.data;
-  } catch (error) {
-    if (isHttpError(error)) {
-      return {
-        success: false,
-        messages: error.messages,
-      };
-    }
-    return {
-      success: false,
-      messages: ["UNKNOWN_ERROR"],
+  if (validationErrors.length > 0) {
+    throw {
+      type: "VALIDATION",
+      messages: validationErrors,
     };
   }
+  await httpClient.post("/contact", {
+    name: data.name.trim(),
+    email: data.email.trim().toLowerCase(),
+    subject: data.subject.trim(),
+    message: data.message.trim(),
+  });
 };
 
 /**
