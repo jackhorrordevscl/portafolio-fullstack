@@ -53,15 +53,25 @@ httpClient.interceptors.response.use(
     // =========================
     // API ERROR (BACKEND RESPONSE)
     // =========================
+    const rawData = error.response.data;
+    let rawMessage: string | string[] | undefined = undefined;
+
+    if (
+      typeof rawData === "object" &&
+      rawData !== null &&
+      "message" in rawData
+    ) {
+      const msg = (rawData as { message?: unknown}).message;
+      if (typeof msg === "string" || Array.isArray(msg)) {
+        rawMessage = msg;
+      }
+    }
+
     const normalizedError: HttpError = {
       type: "API",
-      messages: mapErrorMessages(
-        (error.response.data as { 
-          message?: string | string[] 
-        })?.message
-      ),
+      messages: mapErrorMessages(rawMessage),
       status: error.response.status,
-      data: error.response.data,
+      data: rawData,
     };
 
     console.error("HTTP Error:", normalizedError);
