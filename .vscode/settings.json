@@ -1,0 +1,6 @@
+{
+    "chat.agentFilesLocations": {
+        ".claude/agents": false,
+        "~/agente-test": false
+    }
+}

@@ -41,9 +41,9 @@ httpClient.interceptors.response.use(
     if (!error?.response) {
       const normalizedError: HttpError = {
         type: "NETWORK",
-        messages: ["NETWORK_ERROR"],
+        messages: mapErrorMessages("NETWORK_ERROR"),
         status: undefined,
-        data: error,
+        data: undefined,
       };
 
       console.error("HTTP Error:", normalizedError);
@@ -54,18 +54,7 @@ httpClient.interceptors.response.use(
     // API ERROR (BACKEND RESPONSE)
     // =========================
     const rawData = error.response.data;
-    let rawMessage: string | string[] | undefined = undefined;
-
-    if (
-      typeof rawData === "object" &&
-      rawData !== null &&
-      "message" in rawData
-    ) {
-      const msg = (rawData as { message?: unknown}).message;
-      if (typeof msg === "string" || Array.isArray(msg)) {
-        rawMessage = msg;
-      }
-    }
+    const rawMessage = (rawData as any)?.message;
 
     const normalizedError: HttpError = {
       type: "API",
