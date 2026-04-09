@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { MailerService } from "@nestjs-modules/mailer";
 import { ConfigService } from "@nestjs/config";
 import { CreateContactDto } from "./dto/create-contact.dto";
@@ -35,10 +35,12 @@ export class ContactService {
                         <p>${message}</p>
                     `,
             });
-            return { success: true };
+            return { message: "CONTACT_SUCCESS" };
         } catch (error) {
             //NO FILTRAR AQUI, DEJA AL INTERCEPTOR GLOBAL ACTUAR.
-            throw error;
+            throw new InternalServerErrorException({
+                message: "CONTACT_ERROR",
+            })
         }
         
     }
