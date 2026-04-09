@@ -12,9 +12,6 @@ import { ConfigService } from '@nestjs/config';
         const user = configService.get<string>('MAIL_USER');
         const pass = configService.get<string>('MAIL_PASS');
 
-        console.log('MAIL_USER:', user);
-        console.log('MAIL_PASS:', pass ? 'OK' : 'UNDEFINED');
-
         return {
           transport: {
             host: configService.get<string>('MAIL_HOST'),
