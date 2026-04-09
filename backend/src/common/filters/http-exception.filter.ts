@@ -24,7 +24,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
     let message: string[];
 
-    if (typeof exceptionResponse === 'string') {
+    if (status === 429){
+      message = ['RATE_LIMIT_EXCEEDED']; 
+    } else if (typeof exceptionResponse === 'string') {
       message = [exceptionResponse];
     } else if (
       typeof exceptionResponse === 'object' &&
