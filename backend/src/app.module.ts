@@ -15,7 +15,7 @@ import { CustomThrottlerGuard } from './common/guards/throttler.guard';
     ThrottlerModule.forRoot([
       {
         ttl: 60,
-        limit: 5,
+        limit: 20,
       }
     ])
   ],
