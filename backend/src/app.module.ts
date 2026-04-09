@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ContactModule } from './modules/contact/contact.module';
-import { ThrottlerModule } from '@nestjs/throttler';
+import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { CustomThrottlerGuard } from './common/guards/throttler.guard';
-
+import { WinstonModule } from 'nest-winston';
+import * as winston from 'winston';
 
 @Module({
   imports: [
@@ -16,8 +17,17 @@ import { CustomThrottlerGuard } from './common/guards/throttler.guard';
       {
         ttl: 60,
         limit: 20,
-      }
-    ])
+      },
+    ]),
+    WinstonModule.forRoot({
+      level: 'warn',
+      format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.errors({ stack: true }),
+        winston.format.json(),
+      ),
+      transports: [new winston.transports.Console()],
+    }),
   ],
   providers: [
     {
@@ -27,4 +37,3 @@ import { CustomThrottlerGuard } from './common/guards/throttler.guard';
   ],
 })
 export class AppModule {}
-

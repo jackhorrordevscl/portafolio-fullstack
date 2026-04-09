@@ -1,19 +1,9 @@
-/*
-  ORDEN DEL PIPELINE: 
-    - CORS
-    - PREFIX (/api)
-    - ValidationPipe -> puede lanzar errores
-    - ExceptionFilter -> captura esos errores
-    - RESPONSE AL CLIENTE
-
-    Aseguramos que los errores de validación pasen un filtro personalizado y
-    se normalicen antes de salir del backend
-*/
-
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { BadRequestException, ValidationPipe } from '@nestjs/common';
+import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -24,6 +14,8 @@ async function bootstrap() {
     origin: ['http://localhost:5173'],
     credentials: true,
   });
+
+  app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER))
 
   app.useGlobalPipes(
     new ValidationPipe({

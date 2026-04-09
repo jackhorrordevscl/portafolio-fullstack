@@ -1,9 +1,21 @@
-import { ThrottlerGuard } from "@nestjs/throttler";
-import { ExecutionContext, Injectable, HttpException, HttpStatus, Logger } from "@nestjs/common";
+import { 
+    ThrottlerGuard,
+    //type ThrottlerModuleOptions,
+    //type ThrottlerStorage 
+    } from "@nestjs/throttler";
+import { 
+    ExecutionContext, 
+    Logger, 
+    Injectable, 
+    HttpException, 
+    HttpStatus } from "@nestjs/common";
+//import { Reflector} from '@nestjs/core'
+//import { WINSTON_MODULE_NEST_PROVIDER } from "nest-winston";
+//import type { Logger } from 'winston';
 
 @Injectable()
 export class CustomThrottlerGuard extends ThrottlerGuard {
-    private readonly logger = new Logger(CustomThrottlerGuard.name);
+  private readonly logger = new Logger(CustomThrottlerGuard.name);
     
     protected async throwThrottlingException(
         context: ExecutionContext,
