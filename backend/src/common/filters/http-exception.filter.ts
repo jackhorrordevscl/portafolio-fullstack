@@ -1,13 +1,3 @@
-/* 
-📌 Objetivo técnico
-
-Interceptar cualquier HttpException y normalizar la respuesta para que:
-
-message sea siempre string
-nunca llegue string[] al frontend
-el formato sea consistente
-*/
-
 import {
   ExceptionFilter,
   Catch,
@@ -16,7 +6,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { timestamp } from 'rxjs';
+
 
 //DETECTA ERRORES DE NESTJS
 @Catch(HttpException)
@@ -32,35 +22,32 @@ export class HttpExceptionFilter implements ExceptionFilter {
     //EXTRAE EL RESPONSE INTERNO 
     const exceptionResponse = exception.getResponse();
 
-    let message: string;
+    let message: string[];
 
     if (typeof exceptionResponse === 'string') {
-      message = exceptionResponse;
+      message = [exceptionResponse];
     } else if (
       typeof exceptionResponse === 'object' &&
       exceptionResponse !== null
     ) {
-      const res = exceptionResponse as any;
+      const res = exceptionResponse as { message?: unknown };
 
       if (Array.isArray(res.message)) {
-        message = res.message.join(', ');
-      } else if (typeof res.message === 'string') {
         message = res.message;
+      } else if (typeof res.message === 'string') {
+        message = [res.message];
       } else {
-        message = 'Error inesperado';
+        message = ['UNKNOWN_ERROR'];
       }
     } else {
-      message = 'Error inesperado...';
+      message = ['UNKNOWN_ERROR'];
     }
 
-    let error = 'Error';
-    if (exception.name) {
-      error = exception.name.replace('Exception', '');
-    }
+    const error = exception.name?.replace('Exception', '') ?? 'Error';    
     
     response.status(status).json({
       statusCode: status,
-      message,
+      message, //SIEMPRE STRING[]
       error,
       path: request.url,
       timestamp: new Date().toISOString(),

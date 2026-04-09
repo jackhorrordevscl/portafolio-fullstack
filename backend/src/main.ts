@@ -13,7 +13,7 @@
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { BadRequestException, ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -27,9 +27,18 @@ async function bootstrap() {
 
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true, //elimina propiedades no definidas
-      forbidNonWhitelisted: true, //lanza error si vienen extras
       transform: true, //transforma tipos automáticamente
+      exceptionFactory: (errors) => {
+        const messages = errors
+        .map(err => Object.values(err.constraints ?? {}))
+        .flat()
+
+        return new BadRequestException({
+          message: messages,
+        });
+      },
+      /*whitelist: true, //elimina propiedades no definidas
+      forbidNonWhitelisted: true, //lanza error si vienen extras*/
     }),
   );
 
