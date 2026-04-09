@@ -2,7 +2,6 @@ import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { MailerService } from "@nestjs-modules/mailer";
 import { ConfigService } from "@nestjs/config";
 import { CreateContactDto } from "./dto/create-contact.dto";
-import { Subject } from "rxjs";
 
 @Injectable()
 export class ContactService {
