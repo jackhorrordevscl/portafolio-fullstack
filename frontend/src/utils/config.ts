@@ -109,11 +109,11 @@ export const githubConfig = {
 export const apiConfig = {
   // Desarrollo local
   development: {
-    baseUrl: "http://192.168.1.183:3000/api",
+    baseUrl: import.meta.env.VITE_API_URL,
   },
   // Producción
   production: {
-    baseUrl: "https://tu-backend.cloud.run/api", // Actualizar cuando deploys
+    baseUrl: import.meta.env.VITE_API_URL, // Actualizar cuando deploys
   },
 };
 
