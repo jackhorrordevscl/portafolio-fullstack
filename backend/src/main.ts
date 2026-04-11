@@ -11,7 +11,11 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   app.enableCors({
-    origin: ['http://192.168.1.183:5173', 'http://localhost:5173'],
+    origin: [
+      'http://192.168.1.183:5173',
+      'http://localhost:5173',
+      'https://portafolio-fullstack-sage.vercel.app',
+    ],
     credentials: true,
   });
 
