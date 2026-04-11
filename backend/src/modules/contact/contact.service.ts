@@ -1,34 +1,49 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
-import { MailerService } from '@nestjs-modules/mailer';
 import { ConfigService } from '@nestjs/config';
 import { CreateContactDto } from './dto/create-contact.dto';
+import { Resend } from 'resend';
 
 @Injectable()
 export class ContactService {
+  private resend: Resend;
   constructor(
-    private readonly mailerService: MailerService,
-    private readonly configService: ConfigService,
-  ) {}
+    private readonly configService: ConfigService) {
+      this.resend = new Resend(
+        this.configService.get<string>('RESEND_API_KEY')
+      );
+    }
 
   async handleContact(dto: CreateContactDto) {
     const { name, email, subject, message } = dto;
     const to = this.configService.get<string>('MAIL_TO');
-    this.mailerService
-      .sendMail({
+    if (!to) {
+      throw new Error('MAIL_TO is not defined');
+    }
+    try{
+      await this.resend.emails.send({
+      from: 'onboarding@resend.dev',
         to,
         subject: `[PORTAFOLIO] ${subject}`,
         replyTo: email,
         text: `
-      Nombre: ${name}
-      Email: ${email}
-      Mensaje: ${message}
-    `,
-      })
-      .catch((error) => {
-        console.error('MAIL_ERROR', error);
+          Nombre: ${name}
+          Email: ${email}
+          Mensaje:
+          ${message}
+        `,
       });
-
+    
     return { message: 'CONTACT_SUCCESS' };
+    } catch (error) {
+      console.error('RESEND_ERROR', error);
+      throw new HttpException(
+        {
+          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+          message: ['EMAIL_SEND_FAILED'],
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 }
 /*
