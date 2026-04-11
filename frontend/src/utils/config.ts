@@ -109,7 +109,7 @@ export const githubConfig = {
 export const apiConfig = {
   // Desarrollo local
   development: {
-    baseUrl: "http://localhost:3000/api",
+    baseUrl: "http://192.168.1.183:3000/api",
   },
   // Producción
   production: {
