@@ -1,0 +1,28 @@
+# Dependencias
+node_modules
+npm-debug.log
+
+# Archivos de entorno
+.env
+.env.*
+!.env.example
+
+# Build local
+dist
+
+# Git
+.git
+.gitignore
+
+# IDEs
+.vscode
+.idea
+
+# Tests
+coverage
+*.test.ts
+*.spec.ts
+
+# Documentación
+README.md
+docs/
