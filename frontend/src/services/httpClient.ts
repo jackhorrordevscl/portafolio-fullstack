@@ -5,6 +5,7 @@ import axios, { AxiosError } from "axios";
 import { getApiBaseUrl } from "../utils/config";
 import type { HttpError } from "../types/http";
 import { mapErrorMessages } from "../utils/errorMapper";
+import { startRequest, endRequest } from './globalLoading';
 
 // ────────────────────────────────────────────────────────────
 // Instancia base
@@ -23,6 +24,7 @@ export const httpClient = axios.create({
 // ────────────────────────────────────────────────────────────
 httpClient.interceptors.request.use(
   (config) => {
+    startRequest();
     // AGREGAR TOKENS JWT, TRACING HEADERS, LOGS
     return config;
   },
@@ -33,8 +35,12 @@ httpClient.interceptors.request.use(
 // Interceptor de Response
 // ────────────────────────────────────────────────────────────
 httpClient.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    endRequest();
+    return response;
+  },
   (error: AxiosError) => {
+    endRequest();
     // =========================
     // NETWORK ERROR
     // =========================

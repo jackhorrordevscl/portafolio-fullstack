@@ -12,8 +12,10 @@ import {
   LinkedIn,
   Instagram,
 } from "@mui/icons-material";
-import { 
+import {
   sendContactForm, sanitizeContactFormData } from "../services/contactService";
+import { useToast } from "../contexts/ToastContext";
+import { useLoading } from "../contexts/LoadingContext";
 import { userProfile, TEXTS } from "../utils/config";
 import { t } from '../i18n/messages';
 import type { ContactFormData } from "../types";
@@ -39,6 +41,9 @@ const Contact: React.FC = () => {
     messages: [],
   });
 
+  const { showToast } = useToast();
+  const { setLoading } = useLoading();
+
   // ────────────────────────────────────────────────────────────
   // Handlers
   // ────────────────────────────────────────────────────────────
@@ -58,6 +63,7 @@ const Contact: React.FC = () => {
     e.preventDefault();
 
     setIsSubmitting(true);
+    setLoading(true);
     setSubmitStatus({ type: null, messages: [] });
 
     try {
@@ -65,19 +71,20 @@ const Contact: React.FC = () => {
 
       await sendContactForm(sanitizedData);
 
-      
-        setSubmitStatus({
-          type: "success",
-          messages: ["CONTACT_SUCCESS"],
-        });
+      setSubmitStatus({
+        type: "success",
+        messages: ["CONTACT_SUCCESS"],
+      });
 
-        //Limpiar Formulario
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
+      showToast('success', t('CONTACT_SUCCESS'));
+
+      //Limpiar Formulario
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
     } catch (error) {
       if (isHttpError(error)) {
         setSubmitStatus({
@@ -97,14 +104,17 @@ const Contact: React.FC = () => {
           type: "error",
           messages: validationError.messages,
         });
+        showToast('error', t(validationError.messages[0] ?? 'UNKNOWN_ERROR'));
       } else {
         setSubmitStatus({
           type: "error",
           messages: ["UNKNOWN_ERROR"],
         });
+        showToast('error', t('UNKNOWN_ERROR'));
       }
     } finally {
       setIsSubmitting(false);
+      setLoading(false);
     }
   };
 

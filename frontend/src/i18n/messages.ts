@@ -1,16 +1,16 @@
 import type { MessageKey } from "../types/messages";
 
 export const messages: Record<MessageKey, string> = {
-    VALIDATION_NAME_TOO_SHORT: "El nombre debe tener al menos 2 caracteres, chuchatumare",
-    VALIDATION_EMAIL_INVALID: "El email no es válido, sacowea",
-    VALIDATION_SUBJECT_TOO_SHORT: "El asunto debe ser mas largo que tu pichula (3 caracteres)",
-    VALIDATION_MESSAGE_TOO_SHORT: "El mensaje debe durar mas que tu vieja en cuatro",
+    VALIDATION_NAME_TOO_SHORT: "El nombre debe ser de al menos 2 caracteres",
+    VALIDATION_EMAIL_INVALID: "Email no válido",
+    VALIDATION_SUBJECT_TOO_SHORT: "El asunto debe ser de al menos 3 caracteres",
+    VALIDATION_MESSAGE_TOO_SHORT: "El mensaje debe ser de al menos 10 caracteres",
 
-    UNKNOWN_ERROR: "Error bizarro",
-    NETWORK_ERROR: "Error de red red red",
+    UNKNOWN_ERROR: "Error Desconocido",
+    NETWORK_ERROR: "Error de red",
 
-    CONTACT_SUCCESS: "Mensaje exitoosoooooo",
-    CONTACT_ERROR: "ANDA A LAAR",
+    CONTACT_SUCCESS: "Gracias por contactarme!",
+    CONTACT_ERROR: "Error al enviar mensaje",
 };
 
 export const t = (key: MessageKey): string => {
