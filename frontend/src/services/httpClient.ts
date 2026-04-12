@@ -24,8 +24,13 @@ export const httpClient = axios.create({
 // ────────────────────────────────────────────────────────────
 httpClient.interceptors.request.use(
   (config) => {
+    // Notify global loader that a request has started. This increments
+    // an internal counter so the loader remains visible while multiple
+    // concurrent requests are active.
     startRequest();
-    // AGREGAR TOKENS JWT, TRACING HEADERS, LOGS
+
+    // Place to inject auth headers, tracing IDs, or request-level logs.
+    // e.g. config.headers.Authorization = `Bearer ${token}`
     return config;
   },
   (error) => Promise.reject(error),
@@ -36,10 +41,12 @@ httpClient.interceptors.request.use(
 // ────────────────────────────────────────────────────────────
 httpClient.interceptors.response.use(
   (response) => {
+    // On successful response, decrement the loader counter.
     endRequest();
     return response;
   },
   (error: AxiosError) => {
+    // Ensure we always decrement the counter on error as well.
     endRequest();
     // =========================
     // NETWORK ERROR

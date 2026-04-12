@@ -16,6 +16,11 @@ export const ToastProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [message, setMessage] = useState('');
   const [severity, setSeverity] = useState<AlertColor>('info');
 
+  /**
+   * showToast - public API for components to show a global notification
+   * severity: 'success' | 'error' | 'info' | 'warning'
+   * message: localized text to display
+   */
   const showToast: ShowToast = (sev, msg) => {
     setSeverity(sev);
     setMessage(msg);
@@ -27,6 +32,11 @@ export const ToastProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
+      {/*
+        Global Snackbar for toasts.
+        Positioned top-right with high z-index so notifications are visible
+        above the loading bar and most UI elements.
+      */}
       <Snackbar
         open={open}
         autoHideDuration={4000}

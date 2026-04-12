@@ -13,6 +13,8 @@ export const useLoading = () => {
 export const LoadingProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
 
+  // Register a callback so `globalLoading` can toggle this provider's state.
+  // The provider subscribes on mount and unsubscribes on unmount.
   useEffect(() => {
     registerLoadingCallback(setIsLoading);
     return () => {
@@ -24,6 +26,8 @@ export const LoadingProvider: React.FC<{ children: ReactNode }> = ({ children })
     <LoadingContext.Provider value={{ isLoading, setLoading: setIsLoading }}>
       <Box sx={{ position: 'relative' }}>
         {isLoading && (
+          // Top-fixed progress bar shown while there are active requests.
+          // zIndex chosen to appear above page content but under toasts (7000).
           <Box sx={{ position: 'fixed', left: 0, right: 0, top: 0, zIndex: 6000 }}>
             <LinearProgress color="primary" />
           </Box>

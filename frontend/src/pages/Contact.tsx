@@ -62,6 +62,7 @@ const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Show local submitting state and also enable the global loader via provider.
     setIsSubmitting(true);
     setLoading(true);
     setSubmitStatus({ type: null, messages: [] });
@@ -71,11 +72,13 @@ const Contact: React.FC = () => {
 
       await sendContactForm(sanitizedData);
 
+      // Update local status and show a global toast on success.
       setSubmitStatus({
         type: "success",
         messages: ["CONTACT_SUCCESS"],
       });
 
+      // Use the ToastProvider API to display a success message.
       showToast('success', t('CONTACT_SUCCESS'));
 
       //Limpiar Formulario
@@ -100,12 +103,15 @@ const Contact: React.FC = () => {
           messages: MessageKey[];
         };
 
+        // Validation errors returned from backend mapped into UI state
+        // and displayed as a toast for immediate feedback.
         setSubmitStatus({
           type: "error",
           messages: validationError.messages,
         });
         showToast('error', t(validationError.messages[0] ?? 'UNKNOWN_ERROR'));
       } else {
+        // Fallback unknown error: surface a generic toast and local state.
         setSubmitStatus({
           type: "error",
           messages: ["UNKNOWN_ERROR"],
