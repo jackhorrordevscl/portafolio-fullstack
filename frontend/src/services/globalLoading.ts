@@ -14,6 +14,12 @@
 
 let counter = 0; // number of active requests
 let setLoadingCallback: ((v: boolean) => void) | null = null;
+let visible = false; // whether the loader is currently visible
+let showTimer: ReturnType<typeof setTimeout> | null = null;
+
+// Debounce delay before showing the loader (ms). Keeps UI from flashing
+// the progress bar for very short requests. Configurable if needed.
+const SHOW_DELAY_MS = 200;
 
 /** Register a callback from the UI layer (LoadingProvider) */
 export const registerLoadingCallback = (cb: (v: boolean) => void) => {
@@ -31,7 +37,20 @@ export const clearLoadingCallback = () => {
  */
 export const startRequest = () => {
   counter += 1;
-  if (setLoadingCallback) setLoadingCallback(true);
+
+  // If loader already visible, nothing else to do.
+  if (visible) return;
+
+  // If this is the first request, start a timer. Only show the loader
+  // if the request lasts longer than SHOW_DELAY_MS.
+  if (counter === 1) {
+    if (showTimer) clearTimeout(showTimer);
+    showTimer = setTimeout(() => {
+      visible = true;
+      showTimer = null;
+      if (setLoadingCallback) setLoadingCallback(true);
+    }, SHOW_DELAY_MS);
+  }
 };
 
 /**
@@ -40,7 +59,21 @@ export const startRequest = () => {
  */
 export const endRequest = () => {
   counter = Math.max(0, counter - 1);
-  if (counter === 0 && setLoadingCallback) setLoadingCallback(false);
+
+  // If there are still active requests, keep the loader visible.
+  if (counter > 0) return;
+
+  // No active requests. If the loader was not yet shown (timer pending),
+  // cancel the timer and never show it. If it was visible, hide it.
+  if (showTimer) {
+    clearTimeout(showTimer);
+    showTimer = null;
+  }
+
+  if (visible) {
+    visible = false;
+    if (setLoadingCallback) setLoadingCallback(false);
+  }
 };
 
 /** Force-reset the counter and hide the loader (useful for error recovery) */

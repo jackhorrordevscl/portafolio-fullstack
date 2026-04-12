@@ -9,7 +9,7 @@ export const messages: Record<MessageKey, string> = {
     UNKNOWN_ERROR: "Error Desconocido",
     NETWORK_ERROR: "Error de red",
 
-    CONTACT_SUCCESS: "Gracias por contactarme!",
+    CONTACT_SUCCESS: "Mensaje enviado!",
     CONTACT_ERROR: "Error al enviar mensaje",
 };
 

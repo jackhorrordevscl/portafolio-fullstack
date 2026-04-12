@@ -2,19 +2,14 @@
 // GROUND ZERO - Servicio de GitHub API
 // ══════════════════════════════════════════════════════════════
 
-import axios from "axios";
+import { httpClient } from "./httpClient";
 import type { GitHubRepository, Project } from "../types";
 import { githubConfig } from "../utils/config";
 
-// ────────────────────────────────────────────────────────────
-// Configuración de Axios para GitHub API
-// ────────────────────────────────────────────────────────────
-const githubApi = axios.create({
-  baseURL: githubConfig.apiUrl,
-  headers: {
-    Accept: "application/vnd.github.v3+json",
-  },
-});
+// NOTE:
+// We reuse the central `httpClient` instance so requests participate in
+// the global loading indicator and standardized error handling. For the
+// GitHub API we call the full URL and pass the required `Accept` header.
 
 // ────────────────────────────────────────────────────────────
 // Funciones del Servicio
@@ -27,9 +22,13 @@ export const fetchGitHubRepositories = async (): Promise<
   GitHubRepository[]
 > => {
   try {
-    const response = await githubApi.get<GitHubRepository[]>(
-      githubConfig.reposEndpoint,
+    const response = await httpClient.get<GitHubRepository[]>(
+      // full URL to call GitHub's API (httpClient will still run interceptors)
+      `${githubConfig.apiUrl}${githubConfig.reposEndpoint}`,
       {
+        headers: {
+          Accept: "application/vnd.github.v3+json",
+        },
         params: {
           sort: "updated",
           direction: "desc",
