@@ -26,6 +26,10 @@ export const fetchGitHubRepositories = async (): Promise<
       // full URL to call GitHub's API (httpClient will still run interceptors)
       `${githubConfig.apiUrl}${githubConfig.reposEndpoint}`,
       {
+        // GitHub does not set CORS headers to allow credentialed requests from
+        // arbitrary origins. Ensure we do not send credentials on this cross-
+        // origin request to avoid the browser blocking the response.
+        withCredentials: false,
         headers: {
           Accept: "application/vnd.github.v3+json",
         },

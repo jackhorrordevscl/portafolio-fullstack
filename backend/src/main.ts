@@ -15,6 +15,7 @@ async function bootstrap() {
       'http://192.168.1.183:5173',
       'http://localhost:5173',
       'https://portafolio-fullstack-sage.vercel.app',
+      'https://api.github.com/users/jackhorrordevscl/repos',
     ],
     credentials: true,
   });
