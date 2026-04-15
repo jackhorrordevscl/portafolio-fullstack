@@ -15,7 +15,6 @@ async function bootstrap() {
       'http://192.168.1.183:5173',
       'http://localhost:5173',
       'https://portafolio-fullstack-sage.vercel.app',
-      'https://api.github.com/users/jackhorrordevscl/repos',
     ],
     credentials: true,
   });
@@ -25,6 +24,8 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true, //transforma tipos automáticamente
+      whitelist: true,
+      forbidNonWhitelisted: true,
       exceptionFactory: (errors) => {
         const messages = errors
         .map(err => Object.values(err.constraints ?? {}))
@@ -34,8 +35,6 @@ async function bootstrap() {
           message: messages,
         });
       },
-      /*whitelist: true, //elimina propiedades no definidas
-      forbidNonWhitelisted: true, //lanza error si vienen extras*/
     }),
   );
 
