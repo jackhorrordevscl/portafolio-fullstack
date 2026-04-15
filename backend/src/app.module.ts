@@ -13,12 +13,12 @@ import * as winston from 'winston';
       isGlobal: true,
     }),
     ContactModule,
-    ThrottlerModule.forRoot(
+    ThrottlerModule.forRoot([
       {
         ttl: 60,
         limit: 20
       }
-    ),
+    ]),
     WinstonModule.forRoot({
       level: 'warn',
       format: winston.format.combine(
