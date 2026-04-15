@@ -50,7 +50,7 @@ const Home: React.FC = () => {
                 <div className="hero__stat">
                   <Rocket className="hero__stat-icon" />
                   <div className="hero__stat_content">
-                    <span className="hero__stat-value gradient-text">5 + </span>
+                    <span className="hero__stat-value gradient-text">10 + </span>
                     <span className="hero__stat-label">Proyectos</span>
                   </div>
                 </div>

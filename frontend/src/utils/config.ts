@@ -3,6 +3,7 @@
 // ══════════════════════════════════════════════════════════════
 
 import type { UserProfile, NavItem, SkillGroup } from "../types";
+import '../assets/images/og-image.png';
 
 // ────────────────────────────────────────────────────────────
 // Información Personal
@@ -11,7 +12,7 @@ export const userProfile: UserProfile = {
   name: "Juan José Martínez",
   title: "Analista Programador",
   description:
-    "Desarrollador fullstack especializado en React, Node.js y arquitecturas modernas. Apasionado por crear soluciones escalables y experiencias de usuario excepcionales. Con experiencia en tecnologías cloud y containerización, transformo ideas en productos funcionales y mantenibles.",
+    "Desarrollo aplicaciones web desde la idea hasta producción, combinando ejecución ágil con arquitectura sólida. Me enfoco en APIs y MVPs funcionales, trabajando de forma iterativa y en constante comunicación para asegurar resultados alineados a necesidades reales. Utilizo tecnologías modernas como React, Next.js y Node.js para crear soluciones escalables y listas para crecer.",
   email: "jmartinezc.cp@gmail.com",
   location: "Santiago, Chile",
   github: "https://github.com/jackhorrordevscl",
@@ -24,8 +25,8 @@ export const userProfile: UserProfile = {
 // ────────────────────────────────────────────────────────────
 export const navItems: NavItem[] = [
   { label: "Inicio", path: "/" },
-  { label: "Proyectos", path: "/projects" },
   { label: "Sobre Mí", path: "/about" },
+  { label: "Proyectos", path: "/projects" },
   { label: "Contacto", path: "/contact" },
 ];
 
@@ -133,7 +134,7 @@ export const APP_CONFIG = {
   description:
     "Portafolio profesional de Juan José Martínez - Desarrollador Fullstack",
   keywords: "react, nodejs, typescript, fullstack, desarrollador, portfolio",
-  siteUrl: "https://tudominio.com", // Actualizar cuando deploys
+  siteUrl: "https://portafolio-fullstack-sage.vercel.app/", // Actualizar cuando deploys
   socialImage: "/og-image.png", // Agregar imagen después
 };
 
@@ -151,13 +152,13 @@ export const TEXTS = {
   },
   about: {
     title: "Sobre Mí",
-    content: `Soy un desarrollador fullstack con pasión por crear soluciones tecnológicas 
-    innovadoras y escalables. Mi experiencia abarca desde el desarrollo frontend con React 
-    hasta arquitecturas backend robustas con Node.js y NestJS.
+    content: `Soy desarrollador fullstack enfocado en crear aplicaciones web funcionales desde la idea inicial hasta su despliegue en producción. Trabajo construyendo dashboards, APIs y MVPs, priorizando siempre que el producto sea útil, escalable y esté listo para evolucionar.
     
-    Me especializo en transformar ideas complejas en aplicaciones funcionales, mantenibles 
-    y con excelente experiencia de usuario. Siempre estoy aprendiendo nuevas tecnologías 
-    y mejores prácticas para mantenerme actualizado en el ecosistema JavaScript/TypeScript.`,
+    Mi forma de trabajar se basa en la ejecución ágil y la comunicación constante. Me involucro activamente durante todo el proceso, asegurando que cada avance esté alineado con lo que realmente necesitas. No se trata solo de desarrollar, sino de construir una solución que tenga sentido en la práctica y pueda usarse desde el primer momento.
+    
+    Utilizo un stack moderno basado en React y Node.js (Next.js, NestJS, PostgreSQL), lo que me permite desarrollar soluciones completas, mantenibles y preparadas para crecer. Me enfoco en equilibrar rendimiento, experiencia de usuario y tiempos de entrega, manteniendo siempre una visión clara del producto final.
+    
+    Estoy disponible para nuevos proyectos y colaboraciones.`,
   },
   projects: {
     title: "Proyectos",
