@@ -132,7 +132,7 @@ const Contact: React.FC = () => {
     {
       icon: <Email />,
       label: "Email",
-      vaule: brandProfile.email,
+      value: brandProfile.email,
       link: `mailto:${brandProfile.email}`,
     },
     {
