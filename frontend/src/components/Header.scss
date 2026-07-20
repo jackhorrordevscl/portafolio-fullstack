@@ -55,6 +55,7 @@
   }
 
   &__logo-text {
+    font-family: vars.$font-display;
     font-size: vars.$font-size-xl;
     font-weight: vars.$font-weight-bold;
     color: vars.$text-primary;

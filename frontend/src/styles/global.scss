@@ -43,6 +43,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: vars.$font-display;
   font-weight: vars.$font-weight-bold;
   line-height: 1.2;
   margin-bottom: vars.$spacing-md;
