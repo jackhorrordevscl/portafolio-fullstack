@@ -6,7 +6,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowForward, Code, Rocket } from "@mui/icons-material";
-import { userProfile, TEXTS } from "../utils/config";
+import { brandProfile, TEXTS } from "../utils/config";
 import "../styles/pages/Home.scss";
 
 const Home: React.FC = () => {
@@ -30,9 +30,9 @@ const Home: React.FC = () => {
               </h2>
               <div className="hero__subtitle">
                 <Code className="hero__icon" />
-                <span>{userProfile.title}</span>
+                <span>{brandProfile.title}</span>
               </div>
-              <p className="hero__description">{userProfile.description}</p>
+              <p className="hero__description">{brandProfile.description}</p>
 
               {/* CTA */}
               <div className="hero__actions">
@@ -84,12 +84,12 @@ const Home: React.FC = () => {
                 <div className="hero__code-content">
                   <code>
                     <span className="code-keyword">const</span>{" "}
-                    <span className="code-variable">developer</span> = {"{\n"}{" "}
+                    <span className="code-variable">studio</span> = {"{\n"}{" "}
                     name:{" "}
-                    <span className="code-string">'{userProfile.name}'</span>,
-                    {"{\n"} role:{" "}
-                    <span className="code-string">'{userProfile.title}'</span>
-                    {"{\n"} passion: <span className="code-string">'Code'</span>
+                    <span className="code-string">'{brandProfile.name}'</span>
+                    ,{"{\n"} mission:{" "}
+                    <span className="code-string">'{brandProfile.title}'</span>
+                    {"{\n"} impact: <span className="code-string">'Code'</span>
                     ,{"{\n"}
                     {"};"}
                   </code>

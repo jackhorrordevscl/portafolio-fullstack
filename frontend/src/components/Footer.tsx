@@ -4,8 +4,8 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GitHub, LinkedIn, Instagram } from '@mui/icons-material';
-import { userProfile, navItems } from '../utils/config';
+import { GitHub, LinkedIn } from '@mui/icons-material';
+import { brandProfile, navItems } from '../utils/config';
 import './Footer.scss';
 
 const Footer: React.FC = () => {
@@ -14,18 +14,13 @@ const Footer: React.FC = () => {
   const socialLinks = [
     {
       name: 'GitHub',
-      url: userProfile.github,
+      url: brandProfile.github,
       icon: <GitHub />,
     },
     {
       name: 'LinkedIn',
-      url: userProfile.linkedin,
+      url: brandProfile.linkedin,
       icon: <LinkedIn />,
-    },
-    {
-      name: 'Instagram',
-      url: userProfile.instagram,
-      icon: <Instagram />,
     },
   ].filter(link => link.url); // Filtrar solo los que tienen URL
 
@@ -64,8 +59,8 @@ const Footer: React.FC = () => {
               </span>
             </div>
             <p className="footer__tagline">
-              Desarrollando soluciones modernas<br />
-              con tecnologías de vanguardia
+              Código con impacto<br />
+              Desarrollo desde la zona cero
             </p>
           </div>
 
@@ -89,19 +84,19 @@ const Footer: React.FC = () => {
           <div className="footer__contact">
             <h3 className="footer__title">Contacto</h3>
             <div className="footer__contact-info">
-              <a 
-                href={`mailto:${userProfile.email}`}
+              <a
+                href={`mailto:${brandProfile.email}`}
                 className="footer__contact-link"
               >
-                {userProfile.email}
+                {brandProfile.email}
               </a>
-              <p className="footer__location">{userProfile.location}</p>
+              <p className="footer__location">{brandProfile.location}</p>
             </div>
           </div>
 
           {/* Columna 4: Redes sociales */}
           <div className="footer__social">
-            <h3 className="footer__title">Sígueme</h3>
+            <h3 className="footer__title">Síguenos</h3>
             <div className="footer__social-links">
               {socialLinks.map((link) => (
                 <a
@@ -126,7 +121,7 @@ const Footer: React.FC = () => {
         {/* Bottom */}
         <div className="footer__bottom">
           <p className="footer__copyright">
-            © {currentYear} {userProfile.name}. Todos los derechos reservados.
+            © {currentYear} {brandProfile.name}. Todos los derechos reservados.
           </p>
           <div className="footer__tech">
             <span>Construido con</span>

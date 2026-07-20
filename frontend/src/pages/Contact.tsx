@@ -10,13 +10,12 @@ import {
   LocationOn,
   GitHub,
   LinkedIn,
-  Instagram,
 } from "@mui/icons-material";
 import {
   sendContactForm, sanitizeContactFormData } from "../services/contactService";
 import { useToast } from "../contexts/ToastContext";
 import { useLoading } from "../contexts/LoadingContext";
-import { userProfile, TEXTS } from "../utils/config";
+import { brandProfile, TEXTS } from "../utils/config";
 import { t } from '../i18n/messages';
 import type { ContactFormData } from "../types";
 import type { MessageKey } from "../types/messages";
@@ -132,31 +131,26 @@ const Contact: React.FC = () => {
     {
       icon: <Email />,
       label: "Email",
-      vaule: userProfile.email,
-      link: `mailto:${userProfile.email}`,
+      vaule: brandProfile.email,
+      link: `mailto:${brandProfile.email}`,
     },
     {
       icon: <LocationOn />,
       label: "Ubicación",
-      value: userProfile.location,
+      value: brandProfile.location,
     },
   ];
 
   const socialLinks = [
     {
       name: "GitHub",
-      url: userProfile.github,
+      url: brandProfile.github,
       icon: <GitHub />,
     },
     {
       name: "LinkedIn",
-      url: userProfile.linkedin,
+      url: brandProfile.linkedin,
       icon: <LinkedIn />,
-    },
-    {
-      name: "Instagram",
-      url: userProfile.instagram,
-      icon: <Instagram />,
     },
   ].filter((link) => link.url);
 
@@ -326,7 +320,7 @@ const Contact: React.FC = () => {
 
             {/* Social Links */}
             <div className="contact__social">
-              <h3 className="contact__social-title">Sígueme en</h3>
+              <h3 className="contact__social-title">Síguenos en</h3>
               <div className="contact__social-links">
                 {socialLinks.map((social) => (
                   <a

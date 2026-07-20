@@ -6,7 +6,22 @@ import type { UserProfile, NavItem, SkillGroup } from "../types";
 import '../assets/images/og-image.png';
 
 // ────────────────────────────────────────────────────────────
-// Información Personal
+// Identidad de Marca (Ground Zero Devs) — usada en Home, Header,
+// Footer y Contact. La página About es la única sección autoreferente.
+// ────────────────────────────────────────────────────────────
+export const brandProfile: UserProfile = {
+  name: "Ground Zero Devs",
+  title: "Desarrollo desde la zona cero",
+  description:
+    "Estudio de desarrollo fullstack enfocado en llevar productos digitales desde la idea hasta producción. Combinamos ejecución ágil con arquitectura sólida para construir APIs, MVPs y plataformas web escalables, usando un stack moderno basado en React, Node.js y NestJS.",
+  email: "jmartinezc.cp@gmail.com",
+  location: "Santiago, Chile",
+  github: "https://github.com/jackhorrordevscl",
+  linkedin: "https://www.linkedin.com/in/groundzerodevs",
+};
+
+// ────────────────────────────────────────────────────────────
+// Información Personal (solo usada en About)
 // ────────────────────────────────────────────────────────────
 export const userProfile: UserProfile = {
   name: "Juan José Martínez",
@@ -130,10 +145,11 @@ export const getApiBaseUrl = (): string => {
 // Constantes de la aplicación
 // ────────────────────────────────────────────────────────────
 export const APP_CONFIG = {
-  title: "Juan José Martínez | Analista Programador",
+  title: "Ground Zero Devs | Código con impacto",
   description:
-    "Portafolio profesional de Juan José Martínez - Desarrollador Fullstack",
-  keywords: "react, nodejs, typescript, fullstack, desarrollador, portfolio",
+    "Ground Zero Devs - Estudio de desarrollo fullstack. Desarrollo desde la zona cero.",
+  keywords:
+    "ground zero devs, desarrollo fullstack, react, nodejs, typescript, nestjs, estudio de software, chile",
   siteUrl: "https://portafolio-fullstack-sage.vercel.app/", // Actualizar cuando deploys
   socialImage: "/og-image.png", // Agregar imagen después
 };
@@ -143,10 +159,10 @@ export const APP_CONFIG = {
 // ────────────────────────────────────────────────────────────
 export const TEXTS = {
   hero: {
-    greeting: "Hola, soy",
-    name: "Juan José Martínez",
-    title: "Analista Programador",
-    subtitle: "Fullstack Developer",
+    greeting: "Bienvenido a",
+    name: "Ground Zero Devs",
+    title: "Desarrollo desde la zona cero",
+    subtitle: "Código con impacto",
     cta: "Ver Proyectos",
     ctaSecondary: "Contactar",
   },
