@@ -1,14 +1,27 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+const path = require('path')
+const { defineConfig } = require('vite')
+const react = require('@vitejs/plugin-react')
+const prerender = require('vite-plugin-prerender')
+
+const PuppeteerRenderer = prerender.PuppeteerRenderer
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [react()],
+module.exports = defineConfig({
+  plugins: [
+    react.default(),
+    prerender({
+      staticDir: path.join(__dirname, 'dist'),
+      routes: ['/', '/projects', '/about', '/contact'],
+      renderer: new PuppeteerRenderer({
+        renderAfterTime: 1500,
+      }),
+    }),
+  ],
   build: {
     sourcemap: false,
     rollupOptions: {
       output: {
-        manualChunks(id) {
+        manualChunks(id: string) {
           if (id.includes('node_modules')) {
             if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
               return 'react-vendor';

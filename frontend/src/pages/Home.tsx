@@ -6,12 +6,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowForward, Code, Rocket } from "@mui/icons-material";
-import { brandProfile, TEXTS } from "../utils/config";
+import { brandProfile, TEXTS, APP_CONFIG } from "../utils/config";
+import SeoHead from "../components/SeoHead";
 import "../styles/pages/Home.scss";
 
 const Home: React.FC = () => {
   return (
     <div className="home">
+      <SeoHead
+        title={APP_CONFIG.title}
+        description={APP_CONFIG.description}
+        path="/"
+      />
       {/* SECTION HERO */}
       <section className="hero">
         <div className="hero__container container">

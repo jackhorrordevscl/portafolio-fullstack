@@ -17,6 +17,7 @@ import { useToast } from "../contexts/ToastContext";
 import { useLoading } from "../contexts/LoadingContext";
 import { brandProfile, TEXTS } from "../utils/config";
 import { t } from '../i18n/messages';
+import SeoHead from "../components/SeoHead";
 import type { ContactFormData } from "../types";
 import type { MessageKey } from "../types/messages";
 
@@ -160,6 +161,11 @@ const Contact: React.FC = () => {
 
   return (
     <div className="contact">
+      <SeoHead
+        title={`${TEXTS.contact.title} | Ground Zero Devs`}
+        description={TEXTS.contact.subtitle}
+        path="/contact"
+      />
       <div className="contact__container container">
 
         {/* HEADER */}

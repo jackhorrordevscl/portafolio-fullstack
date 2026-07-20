@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { GitHub, OpenInNew, Star, CallSplit } from '@mui/icons-material';
 import { fetchProjects } from '../services/githubService';
 import { TEXTS } from '../utils/config';
+import SeoHead from '../components/SeoHead';
 import type { Project } from '../types';
 import '../styles/pages/Projects.scss';
 
@@ -52,6 +53,11 @@ const Projects: React.FC = () => {
 
   return (
     <div className="projects">
+      <SeoHead
+        title={`${TEXTS.projects.title} | Ground Zero Devs`}
+        description={`${TEXTS.projects.subtitle} de Ground Zero Devs: APIs, MVPs y plataformas web construidas con React, Node.js y NestJS.`}
+        path="/projects"
+      />
       <div className="projects__container container">
         {/* Header */}
         <motion.div

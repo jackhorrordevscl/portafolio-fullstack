@@ -6,11 +6,17 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Code, School, Work, LocationOn } from "@mui/icons-material";
 import { userProfile, skillGroups, TEXTS } from "../utils/config";
+import SeoHead from "../components/SeoHead";
 import "../styles/pages/About.scss";
 
 const About: React.FC = () => {
   return (
     <div className="about">
+      <SeoHead
+        title={`${TEXTS.about.title} | Ground Zero Devs`}
+        description={userProfile.description}
+        path="/about"
+      />
       <div className="about__container container">
         {/* Header */}
         <motion.div
