@@ -16,6 +16,7 @@ const Projects: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>('all');
+  const [showAllTechFilters, setShowAllTechFilters] = useState(false);
 
   useEffect(() => {
     loadProjects();
@@ -39,6 +40,10 @@ const Projects: React.FC = () => {
   const allTechnologies = Array.from(
     new Set(projects.flatMap(p => p.technologies))
   ).sort();
+  const visibleTechFilters = showAllTechFilters
+    ? allTechnologies
+    : allTechnologies.slice(0, 5);
+  const hiddenTechFilterCount = allTechnologies.length - visibleTechFilters.length;
 
   // Filtrar proyectos por tecnología
   const filteredProjects = filter === 'all'
@@ -54,14 +59,10 @@ const Projects: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          style={{ paddingTop: "45px" }}
         >
           <h1 className="projects__title">{TEXTS.projects.title}</h1>
           <p className="projects__subtitle">{TEXTS.projects.subtitle}</p>
-          <div
-            className="accent-bar"
-            style={{ width: "80px", margin: "0 auto" }}
-          />
+          <div className="accent-bar accent-bar--centered" />
         </motion.div>
 
         {/* Filtros */}
@@ -71,27 +72,38 @@ const Projects: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            style={{
-              paddingBottom: "15px",
-            }}
           >
             <button
               className={`projects__filter ${filter === "all" ? "projects__filter--active" : ""}`}
               onClick={() => setFilter("all")}
-              style={{ marginRight: "10px", padding: "5px" }}
             >
               Todos ({projects.length})
             </button>
-            {allTechnologies.slice(0, 5).map((tech) => (
+            {visibleTechFilters.map((tech) => (
               <button
                 key={tech}
                 className={`projects__filter ${filter === tech ? "projects__filter--active" : ""}`}
                 onClick={() => setFilter(tech)}
-                style={{ marginRight: "10px", padding: "5px" }}
               >
                 {tech}
               </button>
             ))}
+            {hiddenTechFilterCount > 0 && (
+              <button
+                className="projects__filter projects__filter--more"
+                onClick={() => setShowAllTechFilters(true)}
+              >
+                +{hiddenTechFilterCount} más
+              </button>
+            )}
+            {showAllTechFilters && allTechnologies.length > 5 && (
+              <button
+                className="projects__filter projects__filter--more"
+                onClick={() => setShowAllTechFilters(false)}
+              >
+                Ver menos
+              </button>
+            )}
           </motion.div>
         )}
 
@@ -127,11 +139,10 @@ const Projects: React.FC = () => {
               filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
-                  className="project-card"
+                  className={`project-card ${project.featured ? 'project-card--featured' : ''}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  style={{ marginBottom: "20px" }}
                 >
                   {project.featured && (
                     <div className="project-card__badge">Destacado</div>
@@ -161,6 +172,11 @@ const Projects: React.FC = () => {
                         {tech}
                       </span>
                     ))}
+                    {project.technologies.length > 4 && (
+                      <span className="project-card__tech project-card__tech--more">
+                        +{project.technologies.length - 4}
+                      </span>
+                    )}
                   </div>
 
                   <div className="project-card__actions">

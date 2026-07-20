@@ -20,10 +20,7 @@ const About: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h1 className="about__title">{TEXTS.about.title}</h1>
-          <div
-            className="accent-bar"
-            style={{ width: "80px", margin: "0 auto" }}
-          />
+          <div className="accent-bar accent-bar--centered" />
         </motion.div>
 
         {/* Profile Section */}

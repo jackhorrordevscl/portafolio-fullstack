@@ -161,6 +161,11 @@ code {
     background: vars.$gradient-accent;
     border-radius: vars.$radius-sm;
     margin: vars.$spacing-md 0;
+
+    &--centered {
+        width: 80px;
+        margin: vars.$spacing-md auto;
+    }
 }
 
 .glow-lime {

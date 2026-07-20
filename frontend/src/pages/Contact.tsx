@@ -172,10 +172,7 @@ const Contact: React.FC = () => {
         >
           <h1 className="contact__title">{TEXTS.contact.title}</h1>
           <p className="contact__subtitle">{TEXTS.contact.subtitle}</p>
-          <div
-            className="accent-bar"
-            style={{ width: "80px", margin: "0 auto" }}
-          />
+          <div className="accent-bar accent-bar--centered" />
         </motion.div>
 
         <div className="contact__content">
