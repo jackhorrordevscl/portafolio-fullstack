@@ -8,6 +8,7 @@ export const messages: Record<MessageKey, string> = {
 
     UNKNOWN_ERROR: "Error Desconocido",
     NETWORK_ERROR: "Error de red",
+    EMAIL_SEND_FAILED: "No se pudo enviar el mensaje, intentá nuevamente",
 
     CONTACT_SUCCESS: "Mensaje enviado!",
     CONTACT_ERROR: "Error al enviar mensaje",

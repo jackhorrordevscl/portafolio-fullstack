@@ -8,6 +8,7 @@ export type MessageKey =
   //GENERICOS
   | "UNKNOWN_ERROR"
   | "NETWORK_ERROR"
+  | "EMAIL_SEND_FAILED"
 
   //CONTACTO
   | "CONTACT_SUCCESS"
