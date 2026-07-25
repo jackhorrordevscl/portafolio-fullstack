@@ -12,7 +12,7 @@ import {
   LinkedIn,
 } from "@mui/icons-material";
 import {
-  sendContactForm, sanitizeContactFormData } from "../services/contactService";
+  sendContactForm } from "../services/contactService";
 import { useToast } from "../contexts/ToastContext";
 import { useLoading } from "../contexts/LoadingContext";
 import { brandProfile, TEXTS } from "../utils/config";
@@ -68,9 +68,7 @@ const Contact: React.FC = () => {
     setSubmitStatus({ type: null, messages: [] });
 
     try {
-      const sanitizedData = sanitizeContactFormData(formData);
-
-      await sendContactForm(sanitizedData);
+      await sendContactForm(formData);
 
       // Update local status and show a global toast on success.
       setSubmitStatus({

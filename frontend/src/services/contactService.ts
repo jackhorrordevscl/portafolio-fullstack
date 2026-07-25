@@ -67,27 +67,4 @@ export const sendContactForm = async (
   });
 };
 
-/**
- * Sanitiza los datos del formulario para prevenir XSS
- */
-export const sanitizeContactFormData = (
-  data: ContactFormData,
-): ContactFormData => {
-  const sanitize = (text: string): string => {
-    return text
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#x27;")
-      .replace(/\//g, "&#x2F;");
-  };
-
-  return {
-    name: sanitize(data.name),
-    email: sanitize(data.email),
-    subject: sanitize(data.subject),
-    message: sanitize(data.message),
-  };
-};
-
 
