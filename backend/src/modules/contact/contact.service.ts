@@ -20,8 +20,10 @@ export class ContactService {
       throw new Error('MAIL_TO is not defined');
     }
     try{
+      const from = this.configService.get<string>('MAIL_FROM') ?? 'Ground Zero Devs <contacto@groundzerodevs.com>';
+
       await this.resend.emails.send({
-      from: 'onboarding@resend.dev',
+        from,
         to,
         subject: `[PORTAFOLIO] ${subject}`,
         replyTo: email,
