@@ -31,6 +31,7 @@ const Contact: React.FC = () => {
     email: "",
     subject: "",
     message: "",
+    website: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
@@ -85,6 +86,7 @@ const Contact: React.FC = () => {
         email: "",
         subject: "",
         message: "",
+        website: "",
       });
     } catch (error) {
       if (isHttpError(error)) {
@@ -190,6 +192,29 @@ const Contact: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <form className="contact-form" onSubmit={handleSubmit}>
+              {/* Honeypot anti-spam: invisible para humanos, los bots suelen completarlo */}
+              <div
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  left: "-9999px",
+                  width: "1px",
+                  height: "1px",
+                  overflow: "hidden",
+                }}
+              >
+                <label htmlFor="website">Sitio web</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formData.website}
+                  onChange={handleChange}
+                />
+              </div>
+
               {/* Nombre */}
               <div className="contact-form__group">
                 <label htmlFor="name" className="contact-form__label">
@@ -203,6 +228,7 @@ const Contact: React.FC = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  maxLength={100}
                   disabled={isSubmitting}
                 />
               </div>
@@ -237,6 +263,7 @@ const Contact: React.FC = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
+                  maxLength={150}
                   disabled={isSubmitting}
                 />
               </div>
@@ -254,6 +281,7 @@ const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  maxLength={2000}
                   disabled={isSubmitting}
                 />
               </div>

@@ -27,17 +27,23 @@ export const validateContactForm = (
 
   if (!data.name || data.name.trim().length < 2) {
     errors.push("VALIDATION_NAME_TOO_SHORT");
+  } else if (data.name.trim().length > 100) {
+    errors.push("VALIDATION_NAME_TOO_LONG");
   }
   if (!data.email || !validateEmail(data.email)) {
     errors.push("VALIDATION_EMAIL_INVALID");
   }
   if (!data.subject || data.subject.trim().length < 3) {
     errors.push("VALIDATION_SUBJECT_TOO_SHORT");
+  } else if (data.subject.trim().length > 150) {
+    errors.push("VALIDATION_SUBJECT_TOO_LONG");
   }
   if (!data.message || data.message.trim().length < 10) {
     errors.push("VALIDATION_MESSAGE_TOO_SHORT");
+  } else if (data.message.trim().length > 2000) {
+    errors.push("VALIDATION_MESSAGE_TOO_LONG");
   }
-  
+
   return errors;
 }
 
@@ -64,6 +70,7 @@ export const sendContactForm = async (
     email: data.email.trim().toLowerCase(),
     subject: data.subject.trim(),
     message: data.message.trim(),
+    website: data.website ?? "",
   });
 };
 

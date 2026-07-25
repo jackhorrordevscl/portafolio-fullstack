@@ -53,9 +53,10 @@ export interface Project {
 
 export interface ContactFormData {
     name: string;
-    email: string; 
+    email: string;
     subject: string;
     message: string;
+    website?: string; // honeypot anti-spam: debe quedar siempre vacío
 }
 
 export interface ContactFormErrors {
