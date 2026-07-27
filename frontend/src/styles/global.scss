@@ -3,6 +3,7 @@
 // ══════════════════════════════════════════════════════════════
 
 @use 'variables' as vars;
+@use 'mixins';
 
 
 
@@ -55,8 +56,12 @@ h1 {
   font-weight: vars.$font-weight-extrabold;
   letter-spacing: -0.02em;
 
-  @media (max-width: vars.$breakpoint-md) {
+  @include mixins.respond-lg {
     font-size: vars.$font-size-4xl;
+  }
+
+  @include mixins.respond-sm {
+    font-size: vars.$font-size-3xl;
   }
 }
 
@@ -64,8 +69,12 @@ h2 {
   font-size: vars.$font-size-4xl;
   font-weight: vars.$font-weight-bold;
 
-  @media (max-width: vars.$breakpoint-md) {
+  @include mixins.respond-lg {
     font-size: vars.$font-size-3xl;
+  }
+
+  @include mixins.respond-sm {
+    font-size: vars.$font-size-2xl;
   }
 }
 
@@ -145,8 +154,12 @@ code {
     margin: 0 auto;
     padding: 0 vars.$spacing-lg;
 
-    @media (max-width: vars.$breakpoint-md) {
+    @include mixins.respond-md {
         padding: 0 vars.$spacing-md;
+    }
+
+    @include mixins.respond-xs {
+        padding: 0 vars.$spacing-sm;
     }
 }
 

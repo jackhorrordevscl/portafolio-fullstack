@@ -132,6 +132,7 @@
   // ────────────────────────────────────────────────────────────
   &__stats {
     display: flex;
+    flex-wrap: wrap;
     gap: vars.$spacing-3xl;
     margin-top: vars.$spacing-2xl;
     padding-top: vars.$spacing-2xl;
@@ -143,6 +144,10 @@
 
     @media (max-width: vars.$breakpoint-sm) {
       gap: vars.$spacing-xl;
+    }
+
+    @media (max-width: vars.$breakpoint-xs) {
+      gap: vars.$spacing-lg;
     }
   }
 
@@ -199,21 +204,21 @@
     &--1 {
       width: 400px;
       height: 400px;
-      border-color: rgba(200, 245, 66, 0.1);
+      border-color: rgba(200, 245, 66, 0.18);
       animation: rotate 20s linear infinite;
     }
 
     &--2 {
       width: 300px;
       height: 300px;
-      border-color: rgba(66, 245, 212, 0.1);
+      border-color: rgba(66, 245, 212, 0.18);
       animation: rotate 15s linear infinite reverse;
     }
 
     &--3 {
       width: 200px;
       height: 200px;
-      border-color: rgba(200, 245, 66, 0.2);
+      border-color: rgba(200, 245, 66, 0.32);
       animation: rotate 10s linear infinite;
     }
   }
@@ -222,10 +227,10 @@
     position: relative;
     z-index: 1;
     background: vars.$bg-surface;
-    border: 1px solid vars.$border-dark;
+    border: 1px solid rgba(200, 245, 66, 0.25);
     border-radius: vars.$radius-lg;
     padding: vars.$spacing-lg;
-    box-shadow: vars.$shadow-lg;
+    box-shadow: vars.$shadow-lg, vars.$shadow-glow-lime;
     max-width: 400px;
     width: 100%;
   }

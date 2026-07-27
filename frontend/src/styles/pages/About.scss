@@ -3,6 +3,7 @@
 // ══════════════════════════════════════════════════════════════
 
 @use '../variables' as vars;
+@use '../mixins';
 
 .about {
   min-height: 100vh;
@@ -191,7 +192,7 @@
 
   &__skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: vars.$spacing-2xl;
   }
 }
@@ -265,6 +266,10 @@
   position: relative;
   padding-left: vars.$spacing-3xl;
 
+  @include mixins.respond-sm {
+    padding-left: vars.$spacing-xl;
+  }
+
   &::before {
     content: '';
     position: absolute;
@@ -286,7 +291,7 @@
 
   &__marker {
     position: absolute;
-    left: - vars.$spacing-3xl;
+    left: -vars.$spacing-3xl;
     top: 0;
     width: 16px;
     height: 16px;
@@ -294,6 +299,10 @@
     border: 3px solid vars.$bg-dark-primary;
     border-radius: 50%;
     box-shadow: vars.$shadow-glow-lime;
+
+    @include mixins.respond-sm {
+      left: -vars.$spacing-xl;
+    }
   }
 
   &__content {
