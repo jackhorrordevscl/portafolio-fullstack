@@ -79,19 +79,20 @@
 
   &__social-links {
     display: flex;
+    flex-wrap: wrap;
     gap: vars.$spacing-md;
   }
 
   &__social-link {
-    width: 48px;
-    height: 48px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: vars.$spacing-sm;
+    padding: vars.$spacing-sm vars.$spacing-lg;
     background: transparent;
     border: 1px solid vars.$border-dark;
     border-radius: vars.$radius-base;
     color: vars.$text-secondary;
+    font-weight: vars.$font-weight-medium;
     transition: all vars.$transition-base;
 
     &:hover {
@@ -103,7 +104,7 @@
     }
 
     svg {
-      font-size: 24px;
+      font-size: 20px;
     }
   }
 

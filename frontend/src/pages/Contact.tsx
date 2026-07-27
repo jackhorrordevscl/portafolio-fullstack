@@ -361,6 +361,7 @@ const Contact: React.FC = () => {
                     aria-label={social.name}
                   >
                     {social.icon}
+                    <span>{social.name}</span>
                   </a>
                 ))}
               </div>
