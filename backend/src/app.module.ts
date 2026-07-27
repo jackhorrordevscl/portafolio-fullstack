@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ContactModule } from './modules/contact/contact.module';
+import { HealthModule } from './modules/health/health.module';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { CustomThrottlerGuard } from './common/guards/throttler.guard';
@@ -13,6 +14,7 @@ import * as winston from 'winston';
       isGlobal: true,
     }),
     ContactModule,
+    HealthModule,
     ThrottlerModule.forRoot([
       {
         ttl: 60,
