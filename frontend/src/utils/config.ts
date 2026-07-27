@@ -3,7 +3,6 @@
 // ══════════════════════════════════════════════════════════════
 
 import type { UserProfile, NavItem, SkillGroup } from "../types";
-import '../assets/images/og-image.png';
 
 // ────────────────────────────────────────────────────────────
 // Identidad de Marca (Ground Zero Devs) — usada en Home, Header,
@@ -196,8 +195,6 @@ export const TEXTS = {
       submit: "Enviar Mensaje",
       sending: "Enviando...",
     },
-    success: "¡Mensaje enviado con éxito! Te responderé pronto.",
-    error: "Error al enviar el mensaje. Intenta nuevamente.",
   },
 };
 

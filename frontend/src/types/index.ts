@@ -2,9 +2,6 @@
 // GROUND ZERO - Definiciones de Tipos TypeScript
 // ══════════════════════════════════════════════════════════════
 
-import type React from "react";
-import type { MessageKey } from "./messages";
-
 // ────────────────────────────────────────────────────────────
 // GitHub Types
 // ────────────────────────────────────────────────────────────
@@ -59,18 +56,6 @@ export interface ContactFormData {
     website?: string; // honeypot anti-spam: debe quedar siempre vacío
 }
 
-export interface ContactFormErrors {
-    name?: string;
-    email?: string;
-    subject?: string;
-    message?: string;
-}
-
-export interface ContactResponse {
-    success: boolean;
-    messages: MessageKey[];
-}
-
 // ────────────────────────────────────────────────────────────
 // User Profile Types
 // ────────────────────────────────────────────────────────────
@@ -116,22 +101,6 @@ export interface SkillGroup {
 }
 
 // ────────────────────────────────────────────────────────────
-// Experience Types
-// ────────────────────────────────────────────────────────────
-
-export interface Experience {
-    id: string;
-    institution: string;
-    degree: string;
-    field: string;
-    startDate: string;
-    endDate: string | null;
-    description?: string;
-    location?: string;
-    gpa?: string;
-}
-
-// ────────────────────────────────────────────────────────────
 // Navigation Types
 // ────────────────────────────────────────────────────────────
 
@@ -142,49 +111,3 @@ export interface NavItem {
     external?: boolean;
 }
 
-// ────────────────────────────────────────────────────────────
-// API Response Types
-// ────────────────────────────────────────────────────────────
-
-export interface ApiResponse<T> {
-    data: T;
-    success: boolean;
-    message?: string;
-    error?: string;
-}
-
-export interface PaginatedResponse<T> {
-    data: T[];
-    total: number;
-    page: number;
-    pageSize: number;
-    totalPages: number;
-}
-
-// ────────────────────────────────────────────────────────────
-// Theme Types
-// ────────────────────────────────────────────────────────────
-
-export type ThemeMode = 'light' | 'dark';
-
-export interface ThemeConfig {
-    mode: ThemeMode;
-    primaryColor: string;
-    secondaryColor: string;
-}
-
-// ────────────────────────────────────────────────────────────
-// Component Props Types
-// ────────────────────────────────────────────────────────────
-
-export interface BaseComponentProps {
-    className?: string;
-    style?: React.CSSProperties;
-    children?: React.ReactNode;
-}
-
-export interface SectionProps extends BaseComponentProps {
-    id?: string;
-    title?: string;
-    subtitle?: string;
-}
