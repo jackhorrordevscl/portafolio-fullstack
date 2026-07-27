@@ -2,6 +2,9 @@ import { IsEmail, IsNotEmpty, IsOptional, IsString, MaxLength, MinLength } from 
 import { Transform } from "class-transformer";
 import { sanitizeInput } from "src/common/utils/sanitize.util";
 
+// Estas reglas (min/maxLength por campo) están duplicadas a mano en
+// frontend/src/services/contactService.ts (validateContactForm) — si cambian
+// acá, actualizar también ahí.
 export class CreateContactDto {
   @Transform(({ value }) => sanitizeInput(value))
   @IsNotEmpty({ message: 'VALIDATION_NAME_TOO_SHORT' })

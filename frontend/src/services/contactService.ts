@@ -18,7 +18,9 @@ export const validateEmail = (email: string): boolean => {
 };
 
 /**
- * Valida los datos del formulario de contacto
+ * Valida los datos del formulario de contacto.
+ * Duplica a mano las reglas de backend/src/modules/contact/dto/create-contact.dto.ts
+ * (minLength/maxLength por campo) — si cambian ahí, actualizar también acá.
  */
 export const validateContactForm = (
   data: ContactFormData,
