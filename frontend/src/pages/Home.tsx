@@ -95,8 +95,8 @@ const Home: React.FC = () => {
                     <span className="code-string">'{brandProfile.name}'</span>
                     ,{"{\n"} mission:{" "}
                     <span className="code-string">'{brandProfile.title}'</span>
-                    {"{\n"} impact: <span className="code-string">'Code'</span>
-                    ,{"{\n"}
+                    ,{"{\n"} impact: <span className="code-string">'Code'</span>
+                    {"{\n"}
                     {"};"}
                   </code>
                 </div>
