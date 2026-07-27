@@ -3,7 +3,7 @@
 // GROUND ZERO - Projects Page
 // ══════════════════════════════════════════════════════════════
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { GitHub, OpenInNew, Star, CallSplit } from '@mui/icons-material';
 import { fetchProjects } from '../services/githubService';
@@ -38,18 +38,23 @@ const Projects: React.FC = () => {
   };
 
   // Obtener todas las tecnologías únicas
-  const allTechnologies = Array.from(
-    new Set(projects.flatMap(p => p.technologies))
-  ).sort();
+  const allTechnologies = useMemo(
+    () => Array.from(new Set(projects.flatMap(p => p.technologies))).sort(),
+    [projects]
+  );
   const visibleTechFilters = showAllTechFilters
     ? allTechnologies
     : allTechnologies.slice(0, 5);
   const hiddenTechFilterCount = allTechnologies.length - visibleTechFilters.length;
 
   // Filtrar proyectos por tecnología
-  const filteredProjects = filter === 'all'
-    ? projects
-    : projects.filter(p => p.technologies.includes(filter));
+  const filteredProjects = useMemo(
+    () =>
+      filter === 'all'
+        ? projects
+        : projects.filter(p => p.technologies.includes(filter)),
+    [projects, filter]
+  );
 
   return (
     <div className="projects">

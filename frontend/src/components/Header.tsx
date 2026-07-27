@@ -98,6 +98,8 @@ const Header: React.FC = () => {
           }`}
           onClick={toggleMobileMenu}
           aria-label="Toggle menu"
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="header-mobile-menu"
         >
           <span></span>
           <span></span>
@@ -107,6 +109,7 @@ const Header: React.FC = () => {
 
       {/* Menú móvil */}
       <div
+        id="header-mobile-menu"
         className={`header__mobile-menu ${
           isMobileMenuOpen ? "header__mobile-menu--open" : ""
         }`}

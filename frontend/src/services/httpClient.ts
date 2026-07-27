@@ -67,7 +67,7 @@ httpClient.interceptors.response.use(
     // API ERROR (BACKEND RESPONSE)
     // =========================
     const rawData = error.response.data;
-    const rawMessage = (rawData as any)?.message;
+    const rawMessage = (rawData as { message?: unknown } | undefined)?.message;
 
     const normalizedError: HttpError = {
       type: "API",
