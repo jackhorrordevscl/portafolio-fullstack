@@ -1,13 +1,13 @@
 <div align="center">
 
-# ⚡ Ground Zero Development
+# ⚡ Ground Zero Devs
 
-### Portafolio Fullstack Profesional (Production Ready)
+### Portafolio Fullstack — Producción
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-C8F542?style=for-the-badge)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-20.x-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
-[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![NestJS](https://img.shields.io/badge/NestJS-10-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)](https://nestjs.com/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![NestJS](https://img.shields.io/badge/NestJS-11-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)](https://nestjs.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
 [![Vercel](https://img.shields.io/badge/Vercel-Frontend-black?style=flat-square&logo=vercel)](https://vercel.com/)
@@ -19,165 +19,141 @@
 
 ---
 
-## 🌐 Demo en Producción
+## 🌐 Demo en producción
 
-🔗 Frontend: https://portafolio-fullstack-sage.vercel.app  
-🔗 Backend: https://portafolio-fullstack-edqs.onrender.com/api  
+🔗 Frontend: https://portafolio-fullstack-sage.vercel.app
+🔗 Backend: https://portafolio-fullstack-edqs.onrender.com/api
 
----
-
-## 🖼️ Preview
-
-> Agregar capturas en `/docs/images`
+> El sitio aún corre sobre los subdominios de Vercel/Render. El dominio propio (`groundzerodevs.com`) ya está verificado y en uso solo como remitente del correo corporativo, no como dominio del sitio.
 
 ---
 
 ## 📖 Descripción
 
-**Ground Zero Development** es un portafolio fullstack profesional desarrollado y desplegado en producción real.
+Portafolio profesional de **Juan José Martínez / Ground Zero Devs**, desarrollado y desplegado en producción real (no es una demo local). Presenta el perfil profesional, proyectos y un formulario de contacto funcional end-to-end.
 
-El proyecto demuestra capacidades en:
-
-- Arquitectura distribuida
-- Desarrollo frontend/backend moderno
-- Resolución de problemas reales en cloud
+El proyecto tiene dos identidades de marca separadas en el mismo frontend: `brandProfile` (Ground Zero Devs, usado en Home, Header, Footer y Contact) y `userProfile` (Juan José Martínez, usado en About).
 
 ---
 
 ## 🧠 Arquitectura
 
-Frontend (React + Vite)
-↓
-Backend API (NestJS)
-↓
-Resend API (Email)
+```
+Frontend (React + Vite)  →  Backend API (NestJS)  →  Resend (Email API)
+```
+
+Monorepo con dos paquetes independientes (`frontend/`, `backend/`), cada uno con su propio `package.json` y despliegue.
 
 ---
 
-## 🚨 CAMBIO ARQUITECTÓNICO CLAVE
+## 🛠️ Stack técnico
 
-### ❌ Eliminado
-- SMTP (Gmail + Nodemailer)
-
-### ✅ Implementado
-- Resend (Email API)
-
-**Motivo:**
-- Fallo ENETUNREACH (IPv6)
-- Bloqueo SMTP en cloud
-- Timeouts en requests
-
----
-
-## 🛠️ Stack Técnico
-
-### Frontend
+### Frontend (`frontend/`)
 
 | Tecnología | Rol |
-|------------|-----|
-| React 18 | UI |
-| TypeScript | Tipado |
-| Vite | Build tool |
-| React Router | SPA Routing |
-| MUI | UI Components |
+|---|---|
+| React 19 + TypeScript | UI |
+| Vite | Build tool / dev server |
+| React Router 7 | SPA routing |
+| MUI 7 + Emotion | Componentes UI |
 | Framer Motion | Animaciones |
-| Axios | HTTP Client |
+| Axios | HTTP client |
+| Sass | Estilos |
+| react-helmet-async | SEO / meta tags por página |
+| i18n propio (`src/i18n/messages.ts`) | Textos y mensajes de error traducidos |
+| Vitest | Tests |
 
-### Backend
+### Backend (`backend/`)
 
 | Tecnología | Rol |
-|------------|-----|
-| NestJS 10 | Framework |
-| class-validator | Validación |
-| sanitize-html | XSS protection |
-| Winston | Logging |
-| Throttler | Rate limiting |
+|---|---|
+| NestJS 11 + TypeScript | Framework API |
+| class-validator / class-transformer | Validación y transformación de DTOs |
+| sanitize-html | Sanitización de inputs del formulario de contacto |
+| Resend | Envío de emails (reemplazó a SMTP/Nodemailer) |
+| nest-winston / Winston | Logging estructurado |
+| @nestjs/throttler | Rate limiting |
+| Jest | Tests unitarios y e2e |
 
 ---
 
-## 📬 Sistema de Contacto
+## 📬 Sistema de contacto
 
 Flujo real en producción:
 
-Frontend → Backend → Resend → Email
+```
+Frontend → POST /api/contact → ContactService → Resend → Email a MAIL_TO
+```
 
-
-✔️ No bloqueante  
-✔️ Cloud-compatible  
-✔️ Sin SMTP  
-
----
-
-## 🚨 Problemas Reales Resueltos
-
-- CORS en producción
-- SMTP bloqueado (IPv6)
-- Timeout por operaciones síncronas
-- Error 502 (puerto incorrecto)
-- Routing SPA en Vercel (404 en refresh)
-- Configuración de variables en build
+Protecciones implementadas:
+- Validación de longitud por campo (`name` 100, `email`/`subject` 150, `message` 2000 caracteres) con mensajes de error traducidos.
+- Sanitización de HTML en los inputs (`sanitize-html`) antes de procesarlos.
+- Honeypot (campo `website` oculto): si llega completado, se responde éxito simulado sin enviar el email ni revelar la detección.
+- Rate limiting global (20 req/60s) vía `ThrottlerModule`.
+- Remitente verificado con dominio propio: `Ground Zero Devs <contacto@groundzerodevs.com>`.
 
 ---
 
 ## 🔒 Seguridad
 
 | Medida | Implementación |
-|--------|---------------|
-| XSS | sanitize-html |
-| Validación | class-validator |
-| Rate limiting | 20 global / 5 contacto |
-| Errores | Filtro global |
+|---|---|
+| Sanitización de inputs | `sanitize-html` en el DTO de contacto |
+| Validación de payloads | `class-validator` + `ValidationPipe` global (whitelist, forbidNonWhitelisted) |
+| Rate limiting | `@nestjs/throttler`, guard custom (`CustomThrottlerGuard`) |
+| CORS | Whitelist explícita de orígenes en `main.ts` |
+| Manejo de errores | Filtro global de excepciones HTTP |
+| Anti-spam | Honeypot en formulario de contacto |
+
+> Pendiente conocido: no hay `helmet` configurado en el backend (ver issue #18 del board).
+
+---
+
+## ⚙️ Variables de entorno
+
+### Backend
+
+```
+RESEND_API_KEY=
+MAIL_TO=
+MAIL_FROM=       # opcional, default: "Ground Zero Devs <contacto@groundzerodevs.com>"
+PORT=
+```
+
+### Frontend
+
+```
+VITE_API_URL=https://portafolio-fullstack-edqs.onrender.com/api
+```
 
 ---
 
 ## 🐳 Docker
 
-- Backend dockerizado (multi-stage)
-- Deploy automático en Render
+El backend incluye un `Dockerfile` multi-stage (build + producción, usuario no-root) usado para el deploy en Render.
 
 ---
 
-## ⚙️ Variables de Entorno
-
-### Backend
-
-RESEND_API_KEY=
-MAIL_TO=
-PORT=
-
-### Frontend
-
-VITE_API_URL=https://portafolio-fullstack-edqs.onrender.com/api
-
----
-
-## 📊 Estado del Proyecto
+## 📊 Estado del proyecto
 
 | Área | Estado |
-|------|--------|
-| Frontend | ✅ Producción |
-| Backend | ✅ Producción |
-| Email | ✅ Operativo |
-| Deploy | ✅ Completo |
+|---|---|
+| Frontend | ✅ En producción (Vercel) |
+| Backend | ✅ En producción (Render) |
+| Email de contacto | ✅ Operativo con dominio propio verificado |
+| Dominio propio del sitio | ⏳ Pendiente (solo el email usa `groundzerodevs.com`) |
 
----
-
-## 🗺️ Roadmap
-
-- [ ] Dominio propio
-- [ ] Email con dominio
-- [ ] Analytics
-- [ ] Observabilidad
+El trabajo pendiente se gestiona como issues en el repo de GitHub, no en este README.
 
 ---
 
 ## 🤝 Contacto
 
-Juan José Martínez  
-Fullstack Developer  
+Juan José Martínez — Ground Zero Devs
+Fullstack Developer
 
-- GitHub: https://github.com/jackhorrordevscl  
-- LinkedIn: https://linkedin.com/in/groundzerodevs  
+- GitHub: https://github.com/jackhorrordevscl
+- LinkedIn: https://linkedin.com/in/groundzerodevs
 
 ---
 
