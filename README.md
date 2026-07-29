@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="frontend/public/logo-final-combined.svg" alt="Ground Zero Devs" width="600">
+
 # ⚡ Ground Zero Devs
 
 ### Portafolio Fullstack — Producción
