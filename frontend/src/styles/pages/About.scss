@@ -56,10 +56,13 @@
 
   &__avatar {
     position: relative;
-    width: 180px;
-    height: 180px;
+    width: 260px;
+    height: 260px;
+    flex-shrink: 0;
 
     @media (max-width: vars.$breakpoint-md) {
+      width: 200px;
+      height: 200px;
       margin: 0 auto;
     }
   }
@@ -68,6 +71,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 20%;
     border-radius: 50%;
     position: relative;
     z-index: 1;
