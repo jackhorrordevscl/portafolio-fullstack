@@ -71,6 +71,7 @@ export interface UserProfile {
     instagram?: string;
     twitter?: string;
     website?: string;
+    whatsapp?: string;
     avatar?: string;
     resume?: string;
 }

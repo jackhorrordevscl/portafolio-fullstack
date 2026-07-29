@@ -14,9 +14,10 @@ export const brandProfile: UserProfile = {
   description:
     "Estudio de desarrollo fullstack enfocado en llevar productos digitales desde la idea hasta producción. Combinamos ejecución ágil con arquitectura sólida para construir APIs, MVPs y plataformas web escalables, usando un stack moderno basado en React, Node.js y NestJS.",
   email: "jmartinez@groundzerodevs.com",
-  location: "Santiago, Chile",
+  location: "Los Escritores 10415, La Florida, Santiago",
   github: "https://github.com/jackhorrordevscl",
   linkedin: "https://www.linkedin.com/in/groundzerodevs",
+  whatsapp: "56956039666",
 };
 
 // ────────────────────────────────────────────────────────────
@@ -160,6 +161,7 @@ export const TEXTS = {
   },
   about: {
     title: "Sobre Mí",
+    subtitle: "Quién soy y cómo encaro cada proyecto",
     content: `Soy desarrollador fullstack enfocado en crear aplicaciones web funcionales desde la idea inicial hasta su despliegue en producción. Trabajo construyendo dashboards, APIs y MVPs, priorizando siempre que el producto sea útil, escalable y esté listo para evolucionar.
     
     Mi forma de trabajar se basa en la ejecución ágil y la comunicación constante. Me involucro activamente durante todo el proceso, asegurando que cada avance esté alineado con lo que realmente necesitas. No se trata solo de desarrollar, sino de construir una solución que tenga sentido en la práctica y pueda usarse desde el primer momento.
