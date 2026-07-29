@@ -8,8 +8,8 @@
   position: relative;
   background: vars.$bg-dark-secondary;
   border-top: 1px solid vars.$border-dark;
-  padding: vars.$spacing-4xl 0 vars.$spacing-2xl;
-  margin-top: vars.$spacing-4xl;
+  padding: vars.$spacing-3xl 0 vars.$spacing-xl;
+  margin-top: vars.$spacing-3xl;
   overflow: hidden;
 
   &__container {
@@ -187,7 +187,7 @@
       vars.$border-dark 80%,
       transparent
     );
-    margin: vars.$spacing-2xl 0;
+    margin: vars.$spacing-xl 0;
   }
 
   // ────────────────────────────────────────────────────────────
@@ -215,6 +215,7 @@
   &__tech {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: vars.$spacing-sm;
     font-size: vars.$font-size-sm;
     color: vars.$text-subtle;

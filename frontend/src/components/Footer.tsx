@@ -108,6 +108,8 @@ const Footer: React.FC = () => {
             <span>Construido con</span>
             <span className="gradient-text">React</span>
             <span>+</span>
+            <span className="gradient-text">Vite</span>
+            <span>+</span>
             <span className="gradient-text">TypeScript</span>
             <span>+</span>
             <span className="gradient-text">NestJS</span>
