@@ -8,6 +8,7 @@ import {
   Send,
   Email,
   LocationOn,
+  WhatsApp,
   GitHub,
   LinkedIn,
 } from "@mui/icons-material";
@@ -135,12 +136,24 @@ const Contact: React.FC = () => {
       value: brandProfile.email,
       link: `mailto:${brandProfile.email}`,
     },
+    ...(brandProfile.whatsapp
+      ? [
+          {
+            icon: <WhatsApp />,
+            label: "WhatsApp",
+            value: "+56 9 5603 9666",
+            link: `https://wa.me/${brandProfile.whatsapp}`,
+          },
+        ]
+      : []),
     {
       icon: <LocationOn />,
       label: "Ubicación",
       value: brandProfile.location,
     },
   ];
+
+  const mapQuery = encodeURIComponent(brandProfile.location);
 
   const socialLinks = [
     {
@@ -335,6 +348,8 @@ const Contact: React.FC = () => {
                     {info.link ? (
                       <a
                         href={info.link}
+                        target={info.link.startsWith("http") ? "_blank" : undefined}
+                        rel={info.link.startsWith("http") ? "noopener noreferrer" : undefined}
                         className="contact-info-card__value contact-info-card__value--link"
                       >
                         {info.value}
@@ -367,10 +382,15 @@ const Contact: React.FC = () => {
               </div>
             </div>
 
-            {/* Decorative Element */}
-            <div className="contact__decoration">
-              <div className="contact__decoration-circle" />
-              <div className="contact__decoration-dots" />
+            {/* Mapa */}
+            <div className="contact__map">
+              <iframe
+                title="Ubicación en el mapa"
+                src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
             </div>
           </motion.div>
         </div>
