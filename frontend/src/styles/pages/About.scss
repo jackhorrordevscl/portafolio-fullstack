@@ -216,123 +216,19 @@
 
   &__items {
     display: flex;
-    flex-direction: column;
-    gap: vars.$spacing-lg;
+    flex-wrap: wrap;
+    gap: vars.$spacing-sm;
   }
 }
 
-.skill-item {
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: vars.$spacing-xs;
-  }
-
-  &__name {
-    font-size: vars.$font-size-base;
-    font-weight: vars.$font-weight-medium;
-    color: vars.$text-primary;
-  }
-
-  &__level {
-    font-size: vars.$font-size-sm;
-    color: vars.$text-muted;
-    font-weight: vars.$font-weight-semibold;
-  }
-
-  &__bar {
-    height: 8px;
-    background: vars.$bg-dark-primary;
-    border-radius: vars.$radius-full;
-    overflow: hidden;
-  }
-
-  &__progress {
-    height: 100%;
-    background: vars.$gradient-accent;
-    border-radius: vars.$radius-full;
-  }
-}
-
-// ────────────────────────────────────────────────────────────
-// Timeline
-// ────────────────────────────────────────────────────────────
-.about__timeline {
-  margin-bottom: vars.$spacing-4xl;
-}
-
-.timeline {
-  position: relative;
-  padding-left: vars.$spacing-3xl;
-
-  @include mixins.respond-sm {
-    padding-left: vars.$spacing-xl;
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: vars.$gradient-accent;
-  }
-}
-
-.timeline-item {
-  position: relative;
-  padding-bottom: vars.$spacing-3xl;
-
-  &:last-child {
-    padding-bottom: 0;
-  }
-
-  &__marker {
-    position: absolute;
-    left: -vars.$spacing-3xl;
-    top: 0;
-    width: 16px;
-    height: 16px;
-    background: vars.$primary-lime;
-    border: 3px solid vars.$bg-dark-primary;
-    border-radius: 50%;
-    box-shadow: vars.$shadow-glow-lime;
-
-    @include mixins.respond-sm {
-      left: -vars.$spacing-xl;
-    }
-  }
-
-  &__content {
-    background: vars.$bg-surface;
-    border: 1px solid vars.$border-dark;
-    border-radius: vars.$radius-lg;
-    padding: vars.$spacing-xl;
-  }
-
-  &__title {
-    font-size: vars.$font-size-xl;
-    margin-bottom: vars.$spacing-xs;
-  }
-
-  &__company {
-    color: vars.$primary-cyan;
-    font-weight: vars.$font-weight-medium;
-    margin-bottom: vars.$spacing-xs;
-  }
-
-  &__period {
-    color: vars.$text-muted;
-    font-size: vars.$font-size-sm;
-    margin-bottom: vars.$spacing-md;
-  }
-
-  &__description {
-    color: vars.$text-secondary;
-    line-height: 1.6;
-  }
+.skill-chip {
+  font-size: vars.$font-size-sm;
+  font-weight: vars.$font-weight-medium;
+  color: vars.$text-primary;
+  background: vars.$bg-dark-primary;
+  border: 1px solid vars.$border-dark;
+  border-radius: vars.$radius-full;
+  padding: vars.$spacing-xs vars.$spacing-md;
 }
 
 // ────────────────────────────────────────────────────────────

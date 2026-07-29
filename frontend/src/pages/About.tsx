@@ -125,73 +125,13 @@ const About: React.FC = () => {
                 <h3 className="skill-group__title">{group.title}</h3>
                 <div className="skill-group__items">
                   {group.skills.map((skill) => (
-                    <div key={skill.name} className="skill-item">
-                      <div className="skill-item__header">
-                        <span className="skill-item__name">{skill.name}</span>
-                        <span className="skill-item__level">
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <div className="skill-item__bar">
-                        <motion.div
-                          className="skill-item__progress"
-                          initial={{ width: 0 }}
-                          animate={{ width: `${skill.level}%` }}
-                          transition={{
-                            duration: 1,
-                            delay: 0.7 + groupIndex * 0.1,
-                          }}
-                        />
-                      </div>
-                    </div>
+                    <span key={skill.name} className="skill-chip">
+                      {skill.name}
+                    </span>
                   ))}
                 </div>
               </motion.div>
             ))}
-          </div>
-        </motion.section>
-
-        {/* Experience Timeline (placeholder) */}
-        <motion.section
-          className="about__timeline"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          <h2 className="about__section-title">
-            <Work className="about__section-icon" />
-            Experiencia
-          </h2>
-
-          <div className="timeline">
-            <div className="timeline-item">
-              <div className="timeline-item__marker" />
-              <div className="timeline-item__content">
-                <h3 className="timeline-item__title">
-                  Desarrollador Fullstack
-                </h3>
-                <p className="timeline-item__company">Proyectos Freelance</p>
-                <p className="timeline-item__period">2023 - Presente</p>
-                <p className="timeline-item__description">
-                  Desarrollo de aplicaciones web con React, Node.js y
-                  arquitecturas modernas. Implementación de soluciones
-                  escalables y mantenibles.
-                </p>
-              </div>
-            </div>
-
-            <div className="timeline-item">
-              <div className="timeline-item__marker" />
-              <div className="timeline-item__content">
-                <h3 className="timeline-item__title">Analista Programador</h3>
-                <p className="timeline-item__company">Desarrollo de Software</p>
-                <p className="timeline-item__period">2021 - 2023</p>
-                <p className="timeline-item__description">
-                  Análisis, diseño e implementación de soluciones tecnológicas.
-                  Trabajo con múltiples tecnologías y frameworks.
-                </p>
-              </div>
-            </div>
           </div>
         </motion.section>
 
