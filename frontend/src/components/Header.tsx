@@ -41,32 +41,7 @@ const Header: React.FC = () => {
         {/* Logo */}
         <Link to="/" className="header__logo">
           <div className="header__logo-symbol">
-            <svg width="40" height="40" viewBox="0 0 40 40">
-              <circle
-                cx="20"
-                cy="20"
-                r="16"
-                fill="none"
-                stroke="url(#logo-gradient)"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeDasharray="90 10"
-                strokeDashoffset="5"
-              />
-              <circle cx="20" cy="8" r="2" fill="#C8F542" />
-              <defs>
-                <linearGradient
-                  id="logo-gradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="0%"
-                >
-                  <stop offset="0%" stopColor="#C8F542" />
-                  <stop offset="100%" stopColor="#42F5D4" />
-                </linearGradient>
-              </defs>
-            </svg>
+            <img src="/isotipo.png" alt="" width={40} height={40} />
           </div>
           <span className="header__logo-text">
             ground<span className="gradient-text">Zero</span>

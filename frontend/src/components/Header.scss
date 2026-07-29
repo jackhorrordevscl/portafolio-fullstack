@@ -49,8 +49,9 @@
     justify-content: center;
     filter: drop-shadow(0 0 8px rgba(200, 245, 66, 0.3));
 
-    svg {
+    img {
       display: block;
+      border-radius: vars.$radius-base;
     }
   }
 
