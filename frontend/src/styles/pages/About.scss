@@ -75,19 +75,74 @@
     border-radius: vars.$radius-xl;
     position: relative;
     z-index: 1;
+    box-shadow: 0 0 40px -8px rgba(200, 245, 66, 0.25);
   }
 
-  &__avatar-ring {
+  // Marco tipo "visor" — esquinas en el gradiente lima→cian de marca,
+  // en vez de un anillo genérico tipo webcam.
+  &__avatar-corner {
     position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    border-radius: vars.$radius-xl;
-    border: 2px solid vars.$primary-lime;
-    border-radius: 50%;
-    opacity: 0.3;
-    animation: pulse 3s ease-in-out infinite;
+    z-index: 2;
+    width: 28px;
+    height: 28px;
+    border-style: solid;
+    border-color: transparent;
+    transition: all vars.$transition-base;
+    pointer-events: none;
+
+    &--tl {
+      top: -8px;
+      left: -8px;
+      border-width: 3px 0 0 3px;
+      border-color: vars.$primary-lime;
+      border-top-left-radius: vars.$radius-base;
+    }
+
+    &--tr {
+      top: -8px;
+      right: -8px;
+      border-width: 3px 3px 0 0;
+      border-color: vars.$primary-lime;
+      border-top-right-radius: vars.$radius-base;
+    }
+
+    &--bl {
+      bottom: -8px;
+      left: -8px;
+      border-width: 0 0 3px 3px;
+      border-color: vars.$primary-cyan;
+      border-bottom-left-radius: vars.$radius-base;
+    }
+
+    &--br {
+      bottom: -8px;
+      right: -8px;
+      border-width: 0 3px 3px 0;
+      border-color: vars.$primary-cyan;
+      border-bottom-right-radius: vars.$radius-base;
+    }
+  }
+
+  &__avatar:hover &__avatar-corner {
+    &--tl,
+    &--tr {
+      top: -12px;
+    }
+
+    &--bl,
+    &--br {
+      bottom: -12px;
+    }
+
+    &--tl,
+    &--bl {
+      left: -12px;
+    }
+
+    &--tr,
+    &--br {
+      right: -12px;
+    }
   }
 
   &__info {

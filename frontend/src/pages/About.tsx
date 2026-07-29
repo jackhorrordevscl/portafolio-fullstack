@@ -43,7 +43,10 @@ const About: React.FC = () => {
                 alt={userProfile.name}
                 className="about__avatar-photo"
               />
-              <div className="about__avatar-ring" />
+              <span className="about__avatar-corner about__avatar-corner--tl" />
+              <span className="about__avatar-corner about__avatar-corner--tr" />
+              <span className="about__avatar-corner about__avatar-corner--bl" />
+              <span className="about__avatar-corner about__avatar-corner--br" />
             </div>
 
             <div className="about__info">
