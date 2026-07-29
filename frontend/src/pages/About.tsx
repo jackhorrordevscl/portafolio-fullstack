@@ -152,11 +152,13 @@ const About: React.FC = () => {
           <div className="education-grid">
             <div className="education-card">
               <School className="education-card__icon" />
-              <h3 className="education-card__title">Desarrollo de Software</h3>
-              <p className="education-card__institution">Formación Técnica</p>
+              <h3 className="education-card__title">Analista Programador</h3>
+              <p className="education-card__institution">
+                Instituto Profesional Santo Tomás
+              </p>
               <p className="education-card__description">
-                Especialización en desarrollo fullstack con énfasis en
-                tecnologías web modernas.
+                Título profesional en Análisis y Programación de Sistemas
+                Computacionales.
               </p>
             </div>
           </div>
