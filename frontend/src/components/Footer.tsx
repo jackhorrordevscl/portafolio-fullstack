@@ -33,26 +33,7 @@ const Footer: React.FC = () => {
           <div className="footer__brand">
             <div className="footer__logo">
               <div className="footer__logo-symbol">
-                <svg width="32" height="32" viewBox="0 0 40 40">
-                  <circle
-                    cx="20"
-                    cy="20"
-                    r="16"
-                    fill="none"
-                    stroke="url(#footer-gradient)"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeDasharray="90 10"
-                    strokeDashoffset="5"
-                  />
-                  <circle cx="20" cy="8" r="2" fill="#C8F542" />
-                  <defs>
-                    <linearGradient id="footer-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#C8F542" />
-                      <stop offset="100%" stopColor="#42F5D4" />
-                    </linearGradient>
-                  </defs>
-                </svg>
+                <img src="/isotipo.png" alt="" width={32} height={32} />
               </div>
               <span className="footer__logo-text">
                 ground<span className="gradient-text">Zero</span>
