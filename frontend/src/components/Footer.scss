@@ -8,8 +8,8 @@
   position: relative;
   background: vars.$bg-dark-secondary;
   border-top: 1px solid vars.$border-dark;
-  padding: vars.$spacing-3xl 0 vars.$spacing-xl;
-  margin-top: vars.$spacing-3xl;
+  padding: vars.$spacing-2xl 0 vars.$spacing-lg;
+  margin-top: vars.$spacing-2xl;
   overflow: hidden;
 
   &__container {
@@ -23,17 +23,17 @@
   &__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: vars.$spacing-3xl;
-    margin-bottom: vars.$spacing-3xl;
+    gap: vars.$spacing-2xl;
+    margin-bottom: vars.$spacing-xl;
 
     @media (max-width: vars.$breakpoint-lg) {
       grid-template-columns: repeat(2, 1fr);
-      gap: vars.$spacing-2xl;
+      gap: vars.$spacing-xl;
     }
 
     @media (max-width: vars.$breakpoint-sm) {
       grid-template-columns: 1fr;
-      gap: vars.$spacing-xl;
+      gap: vars.$spacing-lg;
     }
   }
 
@@ -187,7 +187,7 @@
       vars.$border-dark 80%,
       transparent
     );
-    margin: vars.$spacing-xl 0;
+    margin: vars.$spacing-lg 0;
   }
 
   // ────────────────────────────────────────────────────────────
