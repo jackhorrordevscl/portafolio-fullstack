@@ -46,6 +46,12 @@
       grid-template-columns: 1fr;
       gap: vars.$spacing-3xl;
     }
+
+    // Evita que el track del grid crezca al min-content de sus hijos
+    // (p. ej. el email sin cortar en las info cards).
+    > * {
+      min-width: 0;
+    }
   }
 
   // ────────────────────────────────────────────────────────────
@@ -184,6 +190,7 @@
 
   &__content {
     flex: 1;
+    min-width: 0;
   }
 
   &__label {
@@ -198,6 +205,7 @@
     font-size: vars.$font-size-lg;
     color: vars.$text-primary;
     font-weight: vars.$font-weight-medium;
+    overflow-wrap: break-word;
     margin: 0;
 
     &--link {
