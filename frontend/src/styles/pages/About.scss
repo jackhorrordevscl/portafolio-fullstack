@@ -64,21 +64,13 @@
     }
   }
 
-  &__avatar-placeholder {
+  &__avatar-photo {
     width: 100%;
     height: 100%;
-    background: vars.$gradient-accent;
+    object-fit: cover;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
     z-index: 1;
-  }
-
-  &__avatar-icon {
-    font-size: 80px;
-    color: vars.$bg-dark-primary;
   }
 
   &__avatar-ring {

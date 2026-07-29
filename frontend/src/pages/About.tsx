@@ -38,9 +38,11 @@ const About: React.FC = () => {
         >
           <div className="about__profile-content">
             <div className="about__avatar">
-              <div className="about__avatar-placeholder">
-                <Code className="about__avatar-icon" />
-              </div>
+              <img
+                src="/fotopersonal.jpg"
+                alt={userProfile.name}
+                className="about__avatar-photo"
+              />
               <div className="about__avatar-ring" />
             </div>
 
