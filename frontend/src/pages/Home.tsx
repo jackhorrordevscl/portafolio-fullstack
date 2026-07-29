@@ -6,11 +6,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowForward, Code, Rocket } from "@mui/icons-material";
-import { brandProfile, TEXTS, APP_CONFIG } from "../utils/config";
+import { brandProfile, skillGroups, TEXTS, APP_CONFIG } from "../utils/config";
 import SeoHead from "../components/SeoHead";
 import "../styles/pages/Home.scss";
 
 const Home: React.FC = () => {
+  const technologyCount = skillGroups.reduce(
+    (total, group) => total + group.skills.length,
+    0
+  );
+
   return (
     <div className="home">
       <SeoHead
@@ -63,7 +68,9 @@ const Home: React.FC = () => {
                 <div className="hero__stat">
                   <Code className="hero__stat-icon" />
                   <div className="hero__stat-content">
-                    <span className="hero__stat-value gradient-text">10</span>
+                    <span className="hero__stat-value gradient-text">
+                      {technologyCount}
+                    </span>
                     <span className="hero__stat-label">Tecnologías</span>
                   </div>
                 </div>
