@@ -81,7 +81,6 @@ export interface UserProfile {
 
 export interface Skill {
     name: string;
-    level: number; // 0-100
     category: SkillCategory;
     icon?: string;
 }
