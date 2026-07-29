@@ -1,0 +1,32 @@
+// ══════════════════════════════════════════════════════════════
+// GROUND ZERO - Route Loading Splash
+// ══════════════════════════════════════════════════════════════
+
+@use 'variables' as vars;
+
+.route-fallback {
+  position: fixed;
+  inset: 0;
+  z-index: 5999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: vars.$bg-dark-primary;
+  pointer-events: none;
+
+  &__emblem {
+    border-radius: vars.$radius-lg;
+    animation: route-fallback-pulse 1.4s ease-in-out infinite;
+  }
+}
+
+@keyframes route-fallback-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
