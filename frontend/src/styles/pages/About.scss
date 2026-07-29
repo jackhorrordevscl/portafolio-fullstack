@@ -30,6 +30,12 @@
     }
   }
 
+  &__subtitle {
+    font-size: vars.$font-size-xl;
+    color: vars.$text-secondary;
+    margin-bottom: vars.$spacing-lg;
+  }
+
   // ────────────────────────────────────────────────────────────
   // Profile Section
   // ────────────────────────────────────────────────────────────
@@ -41,7 +47,7 @@
     display: grid;
     grid-template-columns: auto 1fr;
     gap: vars.$spacing-3xl;
-    align-items: center;
+    align-items: stretch;
     background: vars.$bg-surface;
     border: 1px solid vars.$border-dark;
     border-radius: vars.$radius-xl;
@@ -56,8 +62,8 @@
 
   &__avatar {
     position: relative;
-    width: 240px;
-    height: 320px;
+    width: 260px;
+    height: 400px;
     flex-shrink: 0;
 
     @media (max-width: vars.$breakpoint-md) {
@@ -149,6 +155,11 @@
     display: flex;
     flex-direction: column;
     gap: vars.$spacing-md;
+    height: 400px;
+
+    @media (max-width: vars.$breakpoint-md) {
+      height: auto;
+    }
   }
 
   &__name {
@@ -180,9 +191,39 @@
   }
 
   &__description {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
     color: vars.$text-secondary;
     line-height: 1.8;
     white-space: pre-line;
+    padding-right: vars.$spacing-md;
+    scrollbar-width: thin;
+    scrollbar-color: vars.$primary-lime transparent;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: vars.$border-dark;
+      border-radius: vars.$radius-full;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: vars.$primary-lime;
+    }
+
+    @media (max-width: vars.$breakpoint-md) {
+      flex: none;
+      overflow-y: visible;
+      max-height: none;
+      padding-right: 0;
+    }
   }
 
   &__social {
@@ -253,17 +294,69 @@
 // Skill Group
 // ────────────────────────────────────────────────────────────
 .skill-group {
+  position: relative;
   background: vars.$bg-surface;
   border: 1px solid vars.$border-dark;
   border-radius: vars.$radius-lg;
   padding: vars.$spacing-xl;
+  overflow: hidden;
+  transition: all vars.$transition-base;
 
-  &__title {
-    font-size: vars.$font-size-lg;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: vars.$gradient-accent;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: vars.$primary-cyan;
+    box-shadow: 0 12px 30px rgba(66, 245, 212, 0.12);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-md;
     margin-bottom: vars.$spacing-lg;
     padding-bottom: vars.$spacing-md;
-    border-bottom: 2px solid vars.$border-dark;
+    border-bottom: 1px solid vars.$border-dark;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: vars.$radius-base;
+    background: rgba(200, 245, 66, 0.1);
+    color: vars.$primary-lime;
+
+    svg {
+      font-size: 20px;
+    }
+  }
+
+  &__title {
+    flex: 1;
+    font-size: vars.$font-size-lg;
     color: vars.$primary-cyan;
+  }
+
+  &__count {
+    font-size: vars.$font-size-xs;
+    font-weight: vars.$font-weight-semibold;
+    color: vars.$text-muted;
+    background: vars.$bg-dark-primary;
+    border: 1px solid vars.$border-dark;
+    border-radius: vars.$radius-full;
+    padding: 2px vars.$spacing-sm;
   }
 
   &__items {
@@ -287,7 +380,7 @@
 // Education
 // ────────────────────────────────────────────────────────────
 .about__education {
-  margin-bottom: vars.$spacing-4xl;
+  margin-bottom: 0;
 }
 
 .education-grid {

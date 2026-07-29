@@ -4,10 +4,28 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Code, School, Work, LocationOn } from "@mui/icons-material";
+import {
+  Code,
+  School,
+  Work,
+  LocationOn,
+  Dns,
+  Storage,
+  Cloud,
+} from "@mui/icons-material";
 import { userProfile, skillGroups, TEXTS } from "../utils/config";
 import SeoHead from "../components/SeoHead";
 import "../styles/pages/About.scss";
+import type { SkillCategory } from "../types";
+
+const skillGroupIcons: Record<SkillCategory, React.ReactNode> = {
+  frontend: <Code />,
+  backend: <Dns />,
+  database: <Storage />,
+  devops: <Cloud />,
+  tools: <Code />,
+  other: <Code />,
+};
 
 const About: React.FC = () => {
   return (
@@ -26,6 +44,7 @@ const About: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h1 className="about__title">{TEXTS.about.title}</h1>
+          <p className="about__subtitle">{TEXTS.about.subtitle}</p>
           <div className="accent-bar accent-bar--centered" />
         </motion.div>
 
@@ -127,7 +146,15 @@ const About: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.5 + groupIndex * 0.1 }}
               >
-                <h3 className="skill-group__title">{group.title}</h3>
+                <div className="skill-group__header">
+                  <span className="skill-group__icon">
+                    {skillGroupIcons[group.category]}
+                  </span>
+                  <h3 className="skill-group__title">{group.title}</h3>
+                  <span className="skill-group__count">
+                    {group.skills.length}
+                  </span>
+                </div>
                 <div className="skill-group__items">
                   {group.skills.map((skill) => (
                     <span key={skill.name} className="skill-chip">
