@@ -13,7 +13,7 @@ export const brandProfile: UserProfile = {
   title: "Desarrollo desde la zona cero",
   description:
     "Estudio de desarrollo fullstack enfocado en llevar productos digitales desde la idea hasta producción. Combinamos ejecución ágil con arquitectura sólida para construir APIs, MVPs y plataformas web escalables, usando un stack moderno basado en React, Node.js y NestJS.",
-  email: "jmartinezc.cp@gmail.com",
+  email: "jmartinez@groundzerodevs.com",
   location: "Santiago, Chile",
   github: "https://github.com/jackhorrordevscl",
   linkedin: "https://www.linkedin.com/in/groundzerodevs",
@@ -54,11 +54,11 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: "React", category: "frontend" },
       { name: "TypeScript", category: "frontend" },
-      { name: "Next.js", category: "frontend" },
-      { name: "HTML5/CSS3", category: "frontend" },
+      { name: "React Router", category: "frontend" },
+      { name: "Framer Motion", category: "frontend" },
+      { name: "Material UI", category: "frontend" },
       { name: "SCSS/Sass", category: "frontend" },
-      { name: "Tailwind CSS", category: "frontend" },
-      { name: "Material-UI", category: "frontend" },
+      { name: "Vite", category: "frontend" },
     ],
   },
   {
@@ -66,41 +66,22 @@ export const skillGroups: SkillGroup[] = [
     title: "Backend",
     skills: [
       { name: "Node.js", category: "backend" },
-      { name: "Express", category: "backend" },
       { name: "NestJS", category: "backend" },
       { name: "REST APIs", category: "backend" },
-      { name: "GraphQL", category: "backend" },
-    ],
-  },
-  {
-    category: "database",
-    title: "Bases de Datos",
-    skills: [
-      { name: "PostgreSQL", category: "database" },
-      { name: "MongoDB", category: "database" },
-      { name: "MySQL", category: "database" },
-      { name: "Redis", category: "database" },
+      { name: "class-validator", category: "backend" },
+      { name: "Helmet", category: "backend" },
+      { name: "Winston", category: "backend" },
+      { name: "Resend", category: "backend" },
     ],
   },
   {
     category: "devops",
-    title: "DevOps & Cloud",
+    title: "DevOps & Deploy",
     skills: [
       { name: "Docker", category: "devops" },
       { name: "Git/GitHub", category: "devops" },
-      { name: "Google Cloud", category: "devops" },
       { name: "Vercel", category: "devops" },
-      { name: "CI/CD", category: "devops" },
-    ],
-  },
-  {
-    category: "tools",
-    title: "Herramientas",
-    skills: [
-      { name: "VS Code", category: "tools" },
-      { name: "Postman", category: "tools" },
-      { name: "Figma", category: "tools" },
-      { name: "Linux/Ubuntu", category: "tools" },
+      { name: "Render", category: "devops" },
     ],
   },
 ];
