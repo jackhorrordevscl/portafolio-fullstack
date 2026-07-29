@@ -54,11 +54,15 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: "React", category: "frontend" },
       { name: "TypeScript", category: "frontend" },
+      { name: "Next.js", category: "frontend" },
+      { name: "Astro", category: "frontend" },
+      { name: "Vite", category: "frontend" },
       { name: "React Router", category: "frontend" },
+      { name: "TanStack Query", category: "frontend" },
       { name: "Framer Motion", category: "frontend" },
+      { name: "Tailwind CSS", category: "frontend" },
       { name: "Material UI", category: "frontend" },
       { name: "SCSS/Sass", category: "frontend" },
-      { name: "Vite", category: "frontend" },
     ],
   },
   {
@@ -67,21 +71,29 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: "Node.js", category: "backend" },
       { name: "NestJS", category: "backend" },
+      { name: "Prisma", category: "backend" },
       { name: "REST APIs", category: "backend" },
+      { name: "JWT / Passport", category: "backend" },
       { name: "class-validator", category: "backend" },
       { name: "Helmet", category: "backend" },
-      { name: "Winston", category: "backend" },
       { name: "Resend", category: "backend" },
     ],
   },
   {
+    category: "database",
+    title: "Bases de Datos",
+    skills: [{ name: "PostgreSQL", category: "database" }],
+  },
+  {
     category: "devops",
-    title: "DevOps & Deploy",
+    title: "DevOps & Testing",
     skills: [
       { name: "Docker", category: "devops" },
       { name: "Git/GitHub", category: "devops" },
       { name: "Vercel", category: "devops" },
       { name: "Render", category: "devops" },
+      { name: "Playwright", category: "devops" },
+      { name: "Jest", category: "devops" },
     ],
   },
 ];
@@ -152,7 +164,7 @@ export const TEXTS = {
     
     Mi forma de trabajar se basa en la ejecución ágil y la comunicación constante. Me involucro activamente durante todo el proceso, asegurando que cada avance esté alineado con lo que realmente necesitas. No se trata solo de desarrollar, sino de construir una solución que tenga sentido en la práctica y pueda usarse desde el primer momento.
     
-    Utilizo un stack moderno basado en React y Node.js (Next.js, NestJS, PostgreSQL), lo que me permite desarrollar soluciones completas, mantenibles y preparadas para crecer. Me enfoco en equilibrar rendimiento, experiencia de usuario y tiempos de entrega, manteniendo siempre una visión clara del producto final.
+    Elijo el stack según lo que pide el proyecto: React, Next.js o Astro en el frontend, Node.js con NestJS en el backend, y PostgreSQL con Prisma cuando necesito persistencia real. Despliego con Docker en Vercel y Render, y no dejo afuera lo que no se ve a simple vista: autenticación, testing y seguridad.
     
     Estoy disponible para nuevos proyectos y colaboraciones.`,
   },
