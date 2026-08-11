@@ -64,6 +64,7 @@ Monorepo con dos paquetes independientes (`frontend/`, `backend/`), cada uno con
 | react-helmet-async | SEO / meta tags por página |
 | i18n propio (`src/i18n/messages.ts`) | Textos y mensajes de error traducidos |
 | Vitest | Tests |
+| `React.lazy` + `Suspense` | Code-splitting por ruta |
 
 ### Backend (`backend/`)
 
@@ -75,6 +76,7 @@ Monorepo con dos paquetes independientes (`frontend/`, `backend/`), cada uno con
 | Resend | Envío de emails (reemplazó a SMTP/Nodemailer) |
 | nest-winston / Winston | Logging estructurado |
 | @nestjs/throttler | Rate limiting |
+| Helmet | Cabeceras HTTP de seguridad |
 | Jest | Tests unitarios y e2e |
 
 ---
@@ -106,8 +108,8 @@ Protecciones implementadas:
 | CORS | Whitelist explícita de orígenes en `main.ts` |
 | Manejo de errores | Filtro global de excepciones HTTP |
 | Anti-spam | Honeypot en formulario de contacto |
-
-> Pendiente conocido: no hay `helmet` configurado en el backend (ver issue #18 del board).
+| Cabeceras HTTP | `helmet()` en `main.ts` |
+| Healthcheck | `GET /health` (`modules/health/`) |
 
 ---
 
